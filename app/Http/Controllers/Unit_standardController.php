@@ -19,6 +19,12 @@ class Unit_standardController extends Controller{
       return view('unit_standard',compact('unit_standards'));
     }
 
+    public function details($name){
+      $unit_standard =  Unit_standard::where('us_name',$name)->first();
+       
+      return view('view_unit_standard',compact('unit_standard'));
+    }
+
     public function store(Request $request){
         
         $file;

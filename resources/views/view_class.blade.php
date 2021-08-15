@@ -87,7 +87,7 @@
                         </div>
                         <div class="flex">
                            <small class="text-100 mt-1 float-right">
-                          <a href="{{ route('class/unit_standard',$class->slug) }}" class="btn btn-outline-secondary rounded"><i class="fas fa-eye"></i></a>
+                          <a href="{{ route('class/us',$class->slug) }}" class="btn btn-outline-secondary rounded"><i class="fas fa-eye"></i></a>
                            </small>
                         </div>
                      </div>

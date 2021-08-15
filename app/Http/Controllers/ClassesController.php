@@ -72,6 +72,7 @@ class ClassesController extends Controller{
     return view('view_class',compact('class','unit_standards'));
   
 }
+
 public function students($slug){
 
     $learners = User::get();

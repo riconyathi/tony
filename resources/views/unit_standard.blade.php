@@ -35,7 +35,7 @@
                            </div>
                            <div class="flex">
                               <small class="text-100 mt-1 float-right">
-                             <a href="{{ route('unit_standard/view',$unit_standard->us_name) }}" class="btn btn-outline-secondary rounded"><i class="fas fa-eye"></i></a>
+                             <a href="{{ route('unit_standard/details',$unit_standard->us_name) }}" class="btn btn-outline-secondary rounded"><i class="fas fa-eye"></i></a>
                               </small>
                            </div>
                         </div>
@@ -43,11 +43,7 @@
                 </div>
                 @endforeach
             </div>
-
-
-         
-
-                    </div>
+          </div>
 
 
 
