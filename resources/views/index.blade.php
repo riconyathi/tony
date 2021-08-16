@@ -17,7 +17,7 @@
                         <div class="col-md-4">
                             <div class="card border-left-4 border-left-primary border-right-primary">
                                  <div class="card-body text-70 flex" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-                                    <span> <h5 class="text-muted">SECTION 1</h5></span> <span><a href="{{ route('section_1') }}" class="btn btn-outline-secondary">Get started</a></span>
+                                    <span> <h5 class="text-muted">SECTION 1</h5></span> <span><a href="{{ route('section_one') }}" class="btn btn-outline-secondary">Get started</a></span>
                                 </div>
                             </div>
                         </div>

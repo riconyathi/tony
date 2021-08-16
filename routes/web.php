@@ -26,16 +26,18 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SchoolsController;
 use App\Http\Controllers\LearnerController;
 
-
+Route::get('login', [UsersController::class,'login'])->name('login');
+Route::post('auth', [UsersController::class,'authenticate']);
+Route::post('logout', [UsersController::class,'logout'])->name('logout');
 
 Route::get('/', [IndexController::class,'index'])->name('index');
 Route::get('about', [AboutController::class,'about'])->name('about');
 Route::get('myAccount', [AccountController::class,'account'])->name('account');
-Route::get('section_1', [Section_1Controller::class,'section_1'])->name('section_1');
-Route::get('school_details', [SchoolDetailsController::class,'school_details'])->name('school_details');
+
+
 Route::get('tertiary_details', [TertiaryDetailsController::class,'tertiary_details'])->name('tertiary_details');
 Route::get('employment_history', [EmploymentController::class,'employment'])->name('employment');
-Route::get('section_2', [Section_2Controller::class,'section_2'])->name('section_2');
+
 
 Route::get('section_3', [Section_3Controller::class,'section_3'])->name('section_3');
 Route::get('assessment_evidence', [Assessment_evidenceController::class,'assessment_evidence'])->name('assessment_evidence');
@@ -75,4 +77,9 @@ Route::get('unit_standard/{name}/details', [Unit_standardController::class,'deta
 // learners
 Route::get('learner/view', [LearnerController::class,'index'])->name('learners/view');
 Route::get('class/{slug}/students', [ClassesController::class,'students'])->name('class/students');
-
+Route::get('section_one', [LearnerController::class,'section_one'])->name('section_one');
+Route::get('section_2', [LearnerController::class,'section_2'])->name('section_2');
+Route::post('learner/{id}/update', [LearnerController::class,'update']);
+Route::post('learner/{id}/section_2', [LearnerController::class,'updateSection_2']);
+Route::get('school_details', [LearnerController::class,'school_details'])->name('school_details');
+Route::post('learner/{id}/school_details', [LearnerController::class,'school_details_update']);

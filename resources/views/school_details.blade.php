@@ -35,7 +35,7 @@
                                     <div class="card-header p-0 nav">
                                         <div class="row no-gutters" role="tablist">
                                             <div class="col-auto">
-                                                <a href="{{ route('section_1') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center  justify-content-start">
+                                                <a href="{{ route('section_one') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center  justify-content-start">
                                                     <span class="h2 mb-0 mr-3">1</span>
                                                     <span class="flex d-flex flex-column">
                                                         <strong class="card-title">Personal</strong>
@@ -76,7 +76,8 @@
                                     <div class="card-body tab-content">
                                         <div class="tab-pane active text-70" id="1">
                                         	
-                                        	 <form action="/">
+                      <form action="learner/1/school_details" method="POST">
+                       @csrf
                         <div class="row">
                         	 <div class="col-lg-1 pr-lg-0"></div>
                             <div class="col-lg-10 pr-lg-0">
@@ -89,7 +90,7 @@
                                             <div class="form-group row align-items-center mb-0">
                                                 <label class="form-label col-form-label col-sm-3">Last School Attended</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control"  placeholder="School Name ">
+                                                    <input name="last_school"  type="text" class="form-control"  placeholder="School Name ">
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +98,7 @@
                                             <div class="form-group row align-items-center mb-0">
                                                 <label class="form-label col-form-label col-sm-3">Highest Standard Passed</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="Score">
+                                                    <input name="highest_grade" type="text" class="form-control" placeholder="Score">
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +107,7 @@
                                                 <label class="form-label col-form-label col-sm-3">
                                               Subjects Passed</label>
                                                 <div class="col-sm-9">
-                                                    <textarea class="form-control"></textarea>
+                                                    <textarea name="subject_passed" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,11 +118,19 @@
                                                 <label class="form-label col-form-label col-sm-3">
                                                 Date of Birth</label>
                                                 <div class="col-sm-9">
-                                                    <input type="date" class="form-control">
+                                                    <input name="date_of_birth" type="date" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
 
+                                        <div class="list-group-item">
+                                            <div class="form-group row align-items-center mb-0">
+                                               
+                                                <div class="col-sm-9">
+                                                    <input  type="submit" class="form-control btn btn-primary" value="Save">
+                                                </div>
+                                            </div>
+                                        </div>
 
                                      
 

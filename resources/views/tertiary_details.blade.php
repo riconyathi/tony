@@ -35,7 +35,7 @@
                                     <div class="card-header p-0 nav">
                                         <div class="row no-gutters" role="tablist">
                                             <div class="col-auto">
-                                                <a href="{{ route('section_1') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center  justify-content-start">
+                                                <a href="{{ route('section_one') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center  justify-content-start">
                                                     <span class="h2 mb-0 mr-3">1</span>
                                                     <span class="flex d-flex flex-column">
                                                         <strong class="card-title">Personal</strong>
