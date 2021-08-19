@@ -28,15 +28,16 @@ use App\Http\Controllers\LearnerController;
 
 Route::get('login', [UsersController::class,'login'])->name('login');
 Route::post('auth', [UsersController::class,'authenticate']);
-Route::post('logout', [UsersController::class,'logout'])->name('logout');
+Route::get('logout', [UsersController::class,'logout'])->name('logout');
 
-Route::get('/', [IndexController::class,'index'])->name('index');
+
 Route::get('about', [AboutController::class,'about'])->name('about');
 Route::get('myAccount', [AccountController::class,'account'])->name('account');
 
+Route::middleware(['auth'])->group(function () {
+Route::get('/', [IndexController::class,'index'])->name('index');
 
-Route::get('tertiary_details', [TertiaryDetailsController::class,'tertiary_details'])->name('tertiary_details');
-Route::get('employment_history', [EmploymentController::class,'employment'])->name('employment');
+
 
 
 Route::get('section_3', [Section_3Controller::class,'section_3'])->name('section_3');
@@ -58,8 +59,9 @@ Route::get('schools', [SchoolsController::class,'index'])->name('schools');
 Route::post('school/create', [SchoolsController::class,'store']);
 Route::delete('school/{id}', [SchoolsController::class,'destroy'])->name('school-delete');
 
+
 // //classes
-Route::get('classes', [ClassesController::class,'index'])->name('classes');
+Route::get('school/{slug}/view', [ClassesController::class,'index'])->name('school/view');
 Route::post('class/create', [ClassesController::class,'store']);
 Route::delete('classes', [ClassesController::class,'destroy'])->name('classe-delete');
 Route::get('classes/{slug}/view', [ClassesController::class,'view'])->name('class/view');
@@ -81,5 +83,10 @@ Route::get('section_one', [LearnerController::class,'section_one'])->name('secti
 Route::get('section_2', [LearnerController::class,'section_2'])->name('section_2');
 Route::post('learner/{id}/update', [LearnerController::class,'update']);
 Route::post('learner/{id}/section_2', [LearnerController::class,'updateSection_2']);
-Route::get('school_details', [LearnerController::class,'school_details'])->name('school_details');
+Route::get('school_details/{id}', [LearnerController::class,'school_details'])->name('school_details');
 Route::post('learner/{id}/school_details', [LearnerController::class,'school_details_update']);
+Route::get('tertiary_details/{id}', [LearnerController::class,'tertiary_details'])->name('tertiary_details');
+Route::post('learner/{id}/tertiary_details', [LearnerController::class,'update_tertiary_details']);
+Route::get('employment_history', [LearnerController::class,'employment'])->name('employment');
+Route::post('learner/{id}/employment_history', [LearnerController::class,'update_employment_history']);
+});

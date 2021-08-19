@@ -19,8 +19,8 @@
                         </li>
 
                     </ol>
-                    <button class="btn btn-info float-right" data-toggle="modal" data-target="#auth"> Authenticity</button>
-
+                    <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal" data-target="#add_employment">Add Employement History</button>
+                    <br><br>
                 </div>
 
 
@@ -44,7 +44,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-auto border-left border-right">
-                                                <a href="{{ route('school_details') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center  justify-content-start ">
+                                                <a href="{{ route('school_details',auth()->user()->id) }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center  justify-content-start ">
                                                     <span class="h2 mb-0 mr-3">2</span>
                                                     <span class="flex d-flex flex-column">
                                                         <strong class="card-title">School</strong>
@@ -54,7 +54,7 @@
                                             </div>
 
                                               <div class="col-auto border-left border-right">
-                                                <a href="{{ route('tertiary_details') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
+                                                <a href="{{ route('tertiary_details',auth()->user()->id) }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
                                                     <span class="h2 mb-0 mr-3">3</span>
                                                     <span class="flex d-flex flex-column">
                                                         <strong class="card-title">Tertiary</strong>
@@ -107,39 +107,43 @@
                                         <th>
                                             <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">reference</a>
                                         </th>
+                                        <th>
+                                            <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">reference number</a>
+                                        </th>
                                       
                                     </tr>
                                 </thead>
-                                <tbody class="list" id="projects"><tr>
-
-                                      
-
-                                        <td>
-                                            lorem ipsum
+                                <tbody class="list" id="projects">
+                                @foreach ($datas as $data)
+                                    
+                               
+                                <tr>
+                                 <td>
+                                           {{$data->company_name}}
 
                                         </td>
 
                                         <td>
-                                             lorem ipsum
+                                            {{$data->position_held}}
                                         </td>
 
                                         <td>
-                                             lorem ipsum
+                                            {{$data->duration}}
+                                        </td>
+                                        <td>
+                                            {{$data->reference_name}}
                                         </td>
 
                                         <td class="text-right">
-                                            <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  reference
-</button>
+                                         {{$data->reference_contact}}
                                         </td>
                                     </tr>
 
+                                 @endforeach
 
 
 
-
-</tbody>
+                                </tbody>
                             </table>
                         </div>
 

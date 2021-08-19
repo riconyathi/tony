@@ -49,5 +49,11 @@ class User extends Authenticatable
             return $this->hasOne(Learner::class);
         }
 
-        
+        public function tertiary(){
+            return $this->hasMany(Tertiary::class);
+        }
+
+        public function employment(){
+            return $this->hasMany(Employment::class);
+        }
 }

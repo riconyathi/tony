@@ -17,111 +17,52 @@
 <div class="page-separator">
     <div class="page-separator__text"> </div>
 </div>
-<div class="card mb-lg-32pt">
-    
-    <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-date" data-lists-sort-desc="true" data-lists-values="[&quot;js-lists-values-name&quot;, &quot;js-lists-values-department&quot;, &quot;js-lists-values-status&quot;, &quot;js-lists-values-type&quot;, &quot;js-lists-values-phone&quot;, &quot;js-lists-values-date&quot;]">
-        
-        <table class="table mb-0 thead-border-top-0 table-nowrap">
-            <thead>
-                <tr>
-                                      
-                    <th>
-                        <a href="javascript:void(0)" class="sort text-muted" data-sort="js-lists-values-department">School Name</a>
-                    </th>
-                    <th>
-                        <a href="javascript:void(0)" class="sort text-muted" data-sort="js-lists-values-department">Contact Person Name</a>
-                    </th>
-                    <th>
-                        <a href="javascript:void(0)" class="sort text-muted" data-sort="js-lists-values-status">Email </a>
-                    </th>
-                    
-                    <th>
-                        <a href="javascript:void(0)" class="sort text-muted" data-sort="js-lists-values-type">Phone</a>
-                    </th>
-                    
-                    <th>
-                        <a href="javascript:void(0)" class="sort text-muted" data-sort="js-lists-values-phone">Role</a>
-                    </th>
-                    
-                    <th>
-                        <a href="javascript:void(0)" class="sort desc text-muted" data-sort="js-lists-values-date">suspend</a>
-                    </th>
-                    <th style="width: 24px;" class="text-muted"> Delete</th>
-                </tr>
-            </thead>
-            <tbody class="list" id="employees">
-            @foreach ($schools as $school)
-                <tr>
-                   
-                    <td>
-                        <small class="js-lists-values-type text-50">{{$school->name}}</small>
-                    </td>
-                    
-                    <td>
-                        <small class="js-lists-values-type text-50">lorem ipsum</small>
-                    </td>
-                    <td>
-                        <small class="js-lists-values-type text-50">lorem ipsum</small>
-                    </td>
-                    <td>
-                        <small class="js-lists-values-type text-50"> Temporary</small>
-                    </td>
-                    
-                    <td>
-                        <small class="js-lists-values-phone text-50">239-721-3649</small>
-                    </td>
-                    
-                    <td>
-                        <a href="#" class="btn btn-outline-secondary"><i class="fa fa-check"></i></a>
-                    </td>
-                  
-                   <form  method="post" action="{{ route('school-delete',$school->id) }}" >
-                     @csrf
-                     @method('delete')
-                    <td class="text-right">
-                        <button type="submit" class="btn  text-danger"><i class="">9999</button>
-                    </td>
-                   </form>
-                    
-                </tr>
-                @endforeach
-                
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="card-footer p-8pt">
-        
-        <ul class="pagination justify-content-start pagination-xsm m-0">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true" class="material-icons">chevron_left</span>
-                    <span>Prev</span>
-                </a>
-            </li>
-            <li class="page-item dropdown">
-                <a class="page-link dropdown-toggle" data-toggle="dropdown" href="#" aria-label="Page">
-                    <span>1</span>
-                </a>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item active">1</a>
-                    <a href="#" class="dropdown-item">2</a>
-                    <a href="#" class="dropdown-item">3</a>
-                    <a href="#" class="dropdown-item">4</a>
-                    <a href="#" class="dropdown-item">5</a>
-                </div>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span>Next</span>
-                    <span aria-hidden="true" class="material-icons">chevron_right</span>
-                </a>
-            </li>
-        </ul>
-        
-    </div>
-    
-    
+<div class="row card-group-row mb-lg-8pt">
+
+@foreach ($schools as $school)
+
+<div class="col-lg-4 card-group-row__col">
+
+                                <div class="card card-group-row__card">
+                                    <div class="card-header d-flex">
+                                        <div class="flex row">
+                                            <p>{{$school->name}}</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="card-body d-flex flex-column justify-content-center">
+
+                                        <div class="mb-8pt">
+                                            <p class="d-flex align-items-center mb-4pt">
+                                                <small class="flex lh-24pt"><strong>Social Media API</strong></small>
+                                                <small class="text-50 lh-24pt">due in 12 days</small>
+                                            </p>
+                                            <div class="progress" style="height: 4px;">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <p class="d-flex align-items-center mb-4pt">
+                                                <small class="flex lh-24pt"><strong>Advertising Platform</strong></small>
+                                                <small class="text-50 lh-24pt">due in 30 days</small>
+                                            </p>
+                                            <div class="progress" style="height: 4px;">
+                                                <div class="progress-bar bg-accent" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                     
+                                    </div>
+                                    <div >
+                                          
+                                         <span><a href="{{ route('school/view',$school->slug) }}" class="btn btn-outline-secondary">Get started</a></span>
+                                   </div>
+                                </div>
+
+                            </div>
+ 
+@endforeach
+</div>
 </div>
 
 

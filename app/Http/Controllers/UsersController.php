@@ -3,30 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Hash;
+use Session;
 
 class UsersController extends Controller{
     public function users(){
         return view('users');
     }
 
+    public function login(){
+        return view('login');
+    }
+
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
+        
+    
+    $credentials = $request->only('identinty', 'password');
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/')
+                        ->withSuccess('Signed in');
         }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+  
+        return redirect("login")->withSuccess('Login details are not valid');
     }
-}
+
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+  
+        return redirect('login');
+    }
 
 
 }

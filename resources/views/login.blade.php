@@ -277,10 +277,10 @@ form:after {
             @csrf
 			<h1>Login</h1>
 			<div>
-				<input name="identinty" type="text" placeholder="Username" required=""  />
+				<input name="identinty" type="text"  required=""  />
 			</div>
 			<div>
-				<input name="password" type="password" placeholder="Password" required=""  />
+				<input name="password" type="password"  required=""  />
 			</div>
 			<div>
 				<input type="submit" value="Log in" />

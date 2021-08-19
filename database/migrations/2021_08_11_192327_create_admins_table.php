@@ -16,6 +16,7 @@ class CreateAdminsTable extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->onDelete('cascade');
+            $table->foreignId('school_id')->onDelete('cascade');
             $table->timestamps();
         });
     }

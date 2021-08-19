@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Classes;
 use App\Models\Unit_standard;
 use App\Models\Learner;
+use App\Models\School;
 use App\Models\User;
 
 class ClassesController extends Controller{
-    public function index(){
-        $classes = Classes::all();
+    public function index($slug){
+        $school =  School::with('classes')->where('slug',$slug)->first();
         
-        return view('classes',compact('classes'));
+        return view('school_details',compact('school'));
         
     }
 
@@ -66,10 +67,10 @@ class ClassesController extends Controller{
 
    public function view($slug){
         
-    $class =  Classes::withCount('unit_standard')->where('slug',$slug)->first();
-    $unit_standards =  Unit_standard::all();
+    $school =  School::where('slug',$slug)->first();
     
-    return view('view_class',compact('class','unit_standards'));
+    
+    return view('view_class',compact('school'));
   
 }
 

@@ -17,6 +17,9 @@ class SchoolsController extends Controller{
         //validate incoming name
         $fields = $request->validate([
             'name' => ['required', 'max:255'],
+            'contact_person' => ['required', 'min:3'],
+            'identity' => ['required', 'min:8'],
+            'password' => ['required','confirmed', 'min:8'],
         ]);
 
         $school = School::create([
@@ -28,6 +31,15 @@ class SchoolsController extends Controller{
         return redirect('/schools');
 
     }
+
+    // public function view($slug){
+        
+    //     $school = School::where('slug',$slug)->first();
+
+        
+
+    //     return vew('',compact('school'));   
+    // }
     public function destroy($id){
         
         $school = School::findOrFail($id);

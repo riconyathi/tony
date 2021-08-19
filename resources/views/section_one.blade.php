@@ -44,7 +44,7 @@
                                 </a>
                             </div>
                             <div class="col-auto border-left border-right">
-                                <a href="{{ route('school_details') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
+                                <a href="{{ route('school_details',auth()->user()->id) }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
                                     <span class="h2 mb-0 mr-3">2</span>
                                     <span class="flex d-flex flex-column">
                                         <strong class="card-title">School</strong>
@@ -54,7 +54,7 @@
                             </div>
                             
                             <div class="col-auto border-left border-right">
-                                <a href="{{ route('tertiary_details') }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
+                                <a href="{{ route('tertiary_details',auth()->user()->id) }}" class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
                                     <span class="h2 mb-0 mr-3">3</span>
                                     <span class="flex d-flex flex-column">
                                         <strong class="card-title">Tertiary</strong>
@@ -77,7 +77,7 @@
                     <div class="card-body tab-content">
                         <div class="tab-pane active text-70" id="1">
                             
-                            <form action="learner/1/update" method="POST">
+                            <form action="learner/{{$user->id}}/update" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-1 pr-lg-0"></div>
@@ -85,121 +85,153 @@
                                         
                                         <div class="page-section">
                                             <h4>Personal Information</h4>
-                                            
-                                            
                                             <div class="list-group-item">
                                                 <div class="form-group row align-items-center mb-0">
                                                     <label class="form-label col-form-label col-sm-3">
-                                                        Race</label>
-                                                        <select name="race" class="custom-control custom-select form-control col-sm-9">
-                                                            <option value="black">Black</option>
-                                                            <option value="indian">Indian</option>
-                                                            <option value="white">White</option>
-                                                            <option value="coloured">Coloured</option>
-                                                            <option value="other">Other</option>                                          
-                                                        </select>
+                                                        Name</label>
+                                                        <div class="col-sm-9">
+                                                            <input  type="text" class="form-control" value="{{$user->name}}" readonly>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                
                                                 
                                                 <div class="list-group-item">
                                                     <div class="form-group row align-items-center mb-0">
                                                         <label class="form-label col-form-label col-sm-3">
-                                                            Citizenship</label>
+                                                            Surname</label>
                                                             <div class="col-sm-9">
-                                                                <input name="citizenship" type="text" class="form-control" placeholder="citizenship">
+                                                                <input  type="text" class="form-control" value="{{$user->surname}}" readonly >
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
                                                     <div class="list-group-item">
                                                         <div class="form-group row align-items-center mb-0">
                                                             <label class="form-label col-form-label col-sm-3">
-                                                                Marital Status</label>
-                                                                <select name="marital_status" class="custom-control custom-select form-control col-sm-9">
-                                                                    <option value="married">Married</option>
-                                                                    <option value="single">Single</option>
-                                                                    <option value="divorced">Divorced</option>
-                                                                    <option value="window">widow</option>
-                                                                    <option value="windower">Widower</option>
-                                                                    <option value="other">Other</option>                                          
-                                                                </select>
+                                                                Identinty</label>
+                                                                <div class="col-sm-9">
+                                                                    <input  type="text" class="form-control"  value="{{$user->identinty}}" readonly >
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="list-group-item">
                                                             <div class="form-group row align-items-center mb-0">
                                                                 <label class="form-label col-form-label col-sm-3">
-                                                                    Residential Address</label>
-                                                                    <div class="col-sm-9">
-                                                                        <textarea name="residential_address" class="form-control"> </textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item">
-                                                                <div class="form-group row align-items-center mb-0">
-                                                                    <label class="form-label col-form-label col-sm-3">
-                                                                        Work Address</label>
-                                                                        <div class="col-sm-9">
-                                                                            <textarea name="work_address" class="form-control"> </textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                                <div class="list-group-item">
-                                                                    <div class="form-group row align-items-center mb-0">
-                                                                        <label class="form-label col-form-label col-sm-3">Home Tel</label>
-                                                                        <div class="col-sm-9">
-                                                                            <input type="phone" name="home_phone" class="form-control" value="077887552" placeholder="home tel">
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                                <div class="list-group-item">
-                                                                    <div class="form-group row align-items-center mb-0">
-                                                                        <label class="form-label col-form-label col-sm-3">Cell Number</label>
-                                                                        <div class="col-sm-9">
-                                                                            <input type="phone" name="phone" class="form-control" value="077887552" placeholder="cell number">
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                                <div class="list-group-item">
-                                                                    <div class="form-group row align-items-center mb-0">
-                                                                        <label class="form-label col-form-label col-sm-3">Email address</label>
-                                                                        <div class="col-sm-9">
-                                                                            <input type="email" name="email" class="form-control"  placeholder="Your email address ...">
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="list-group-item">
-                                                                    <div class="form-group row align-items-center mb-0">
-                                                                        
-                                                                        <div class="col-sm-9">
-                                                                            <button type="submit" class="btn btn-primary" >Save</button>
-                                                                            
-                                                                        </div>
-                                                                    </div>
+                                                                    Race</label>
+                                                                    <select name="race" class="custom-control custom-select form-control col-sm-9">
+                                                                        <option value="{{$user->learners->race}}">{{$user->learners->race}}</option>
+                                                                        <option value="black">Black</option>
+                                                                        <option value="indian">Indian</option>
+                                                                        <option value="white">White</option>
+                                                                        <option value="coloured">Coloured</option>
+                                                                        <option value="other">Other</option>                                          
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                             
+                                                            
+                                                            <div class="list-group-item">
+                                                                <div class="form-group row align-items-center mb-0">
+                                                                    <label class="form-label col-form-label col-sm-3">
+                                                                        Citizenship</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input name="citizenship" type="text" class="form-control" value="{{$user->learners->citizenship}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="list-group-item">
+                                                                    <div class="form-group row align-items-center mb-0">
+                                                                        <label class="form-label col-form-label col-sm-3">
+                                                                            Marital Status</label>
+                                                                            <select name="marital_status" class="custom-control custom-select form-control col-sm-9">
+                                                                                <option value="married">Married</option>
+                                                                                <option value="single">Single</option>
+                                                                                <option value="divorced">Divorced</option>
+                                                                                <option value="window">widow</option>
+                                                                                <option value="windower">Widower</option>
+                                                                                <option value="other">Other</option>                                          
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="list-group-item">
+                                                                        <div class="form-group row align-items-center mb-0">
+                                                                            <label class="form-label col-form-label col-sm-3">
+                                                                                Residential Address</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <textarea name="residential_address" class="form-control">
+                                                                                        {{$user->learners->residential_address}}
+                                                                                    </textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="list-group-item">
+                                                                            <div class="form-group row align-items-center mb-0">
+                                                                                <label class="form-label col-form-label col-sm-3">
+                                                                                    Work Address</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <textarea name="work_address" class="form-control">
+                                                                                            {{$user->learners->work_address}}  
+                                                                                        </textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="list-group-item">
+                                                                                <div class="form-group row align-items-center mb-0">
+                                                                                    <label class="form-label col-form-label col-sm-3">Home Tel</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="phone" name="home_phone" class="form-control" value="{{$user->home_phone}}">
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="list-group-item">
+                                                                                <div class="form-group row align-items-center mb-0">
+                                                                                    <label class="form-label col-form-label col-sm-3">Cell Number</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="phone" name="phone" class="form-control" value="{{$user->phone}}">
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="list-group-item">
+                                                                                <div class="form-group row align-items-center mb-0">
+                                                                                    <label class="form-label col-form-label col-sm-3">Email address</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        <input type="email" name="email" class="form-control"  value="{{$user->email}}">
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="list-group-item">
+                                                                                <div class="form-group row align-items-center mb-0">
+                                                                                    
+                                                                                    <div class="col-sm-9">
+                                                                                        <button type="submit" class="btn btn-primary" >Save</button>
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </form> 
                                                         </div>
                                                         
                                                     </div>
-                                                </form> 
+                                                    <div class="tab-pane  text-70" id="2"></div>
                                                 </div>
+                                            </div>
                                             
                                         </div>
-                                        <div class="tab-pane  text-70" id="2">2</div>
                                     </div>
                                 </div>
-                                
                             </div>
-                        </div>
-                    </div>
-                </div>
-                @endsection
+                            @endsection
