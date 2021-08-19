@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\School;
+use App\Models\User;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class SchoolsController extends Controller{
     
@@ -18,28 +21,47 @@ class SchoolsController extends Controller{
         $fields = $request->validate([
             'name' => ['required', 'max:255'],
             'contact_person' => ['required', 'min:3'],
-            'identity' => ['required', 'min:8'],
+            'contact_person_surname' => ['required', 'min:3'],
+            'identinty' => ['required', 'min:8'],
             'password' => ['required','confirmed', 'min:8'],
         ]);
+        $logo="";
+        //serve logo to server
+        if($request->file('logo')){
+            $file = $request->file('logo');
+            $logo = time().'_'.$request->file('logo')->getClientOriginalName();
+            $file->storeAs('school_logos', $logo, 'public');
+           }
 
         $school = School::create([
             'name'=> $fields['name'],
-            'slug'=> $fields['name']
+            'slug'=> $fields['name'],
+            'logo'=>$logo
         ]);
 
-        
-        return redirect('/schools');
+        //Create admin
+        //insert in users table
+        $user = User::create([
+            'identinty'=> $fields['identinty'],
+            'name'=> $fields['contact_person'],
+            'surname'=> $fields['contact_person_surname'],
+            'password' => Hash::make($fields['password'])
+            
+        ]);
+
+        //insert in admin table
+        $users = Admin::create([
+            'user_id'=> $user->id,
+            'school_id'=> $school->id 
+        ]);
+
+
+ 
+        return redirect()->back()->withErrors($validator)->withInput();;
 
     }
 
-    // public function view($slug){
-        
-    //     $school = School::where('slug',$slug)->first();
-
-        
-
-    //     return vew('',compact('school'));   
-    // }
+   
     public function destroy($id){
         
         $school = School::findOrFail($id);

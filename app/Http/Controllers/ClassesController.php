@@ -11,8 +11,8 @@ use App\Models\User;
 
 class ClassesController extends Controller{
     public function index($slug){
-        $school =  School::with('classes')->where('slug',$slug)->first();
-        
+        $school =  School::with('admin.user')->with('classes')->where('slug',$slug)->first();
+        //dd($school);
         return view('school_details',compact('school'));
         
     }
@@ -21,16 +21,16 @@ class ClassesController extends Controller{
 
         $fields = $request->validate([
             'name' => ['required', 'max:255'],
-            //'school_id' => 'required'
+            'school_id' => ['required']
         ]);
 
         $school = Classes::create([
             'name'=> $fields['name'],
             'slug'=> $fields['name'],
-            'school_id'=> 1,
+            'school_id'=> $fields['school_id'],
         ]);
 
-        return redirect('/classes');
+        return redirect()->back();
         
     }
 

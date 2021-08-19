@@ -659,64 +659,6 @@
 </div>
 
 
-{{-- create class --}}
-
-<div class="modal fade" id="classes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document"
-    style="box-shadow: 0 3px 3px -2px rgb(39 44 51 / 10%), 0 3px 4px 0 rgb(39 44 51 / 4%), 0 1px 8px 0 rgb(39 44 51 / 2%);">
-    <div class="modal-content">
-      <form method="post" action="/class/create">
-        @csrf
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Create Class </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
-
-            <div class="list-group-item" style="border: none !important;">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-3">
-                  Class Name</label>
-                <div class="col-sm-9">
-                  <input name="name" type="text" class="form-control" placeholder="Name ">
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item" style="border: none !important;">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-3">
-                  Assessor
-                </label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" placeholder=" Assessor Name">
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item" style="border: none !important;">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-3">
-                  Moderrator</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" placeholder="Moderrator Name">
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-outline-secondary">Create</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-
-</div>
 
 
 {{-- create student --}}
@@ -862,7 +804,7 @@
 <div class="modal fade" id="school" tabindex="-1" role="dialog" aria-labelledby="school" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document"
     style="box-shadow: 0 3px 3px -2px rgb(39 44 51 / 10%), 0 3px 4px 0 rgb(39 44 51 / 4%), 0 1px 8px 0 rgb(39 44 51 / 2%);">
-    <form method="post" action="/school/create">
+    <form method="post" action="/school/create" enctype="multipart/form-data">
       @csrf
       <div class="modal-content">
         <div class="modal-header">
@@ -904,10 +846,19 @@
             <div class="list-group-item" style="border: none !important;">
               <div class="form-group row align-items-center mb-0">
                 <label class="form-label col-form-label col-sm-3">
+                  Contact Person Surname</label>
+                <div class="col-sm-9">
+                  <input type="text" name="contact_person_surname" class="form-control" placeholder="Name ">
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
                   Identinty
                 </label>
                 <div class="col-sm-9">
-                  <input type="text" name="identity" class="form-control" placeholder=" Assessor Name">
+                  <input type="text" name="identinty" class="form-control" placeholder=" Assessor Name">
                 </div>
               </div>
             </div>
@@ -918,7 +869,7 @@
                   Password
                 </label>
                 <div class="col-sm-9">
-                  <input type="password"  class="form-control" name="password">
+                  <input type="password" class="form-control" name="password">
                 </div>
               </div>
             </div>
