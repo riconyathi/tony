@@ -28,6 +28,6 @@ class ClassUnitStandard extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('class_unit_standard');
     }
 }

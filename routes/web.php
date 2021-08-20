@@ -52,7 +52,10 @@ Route::get('observation', [ObservationController::class,'observation'])->name('o
 Route::get('view_class', [ViewClassController::class,'view_class'])->name('view_class');
 Route::get('students', [StudentsController::class,'students'])->name('students');
 Route::get('password', [PasswordController::class,'password'])->name('password');
+
+//users
 Route::get('users', [UsersController::class,'users'])->name('users');
+Route::post('user/create', [UsersController::class,'create']);
 
 // //school 
 Route::get('schools', [SchoolsController::class,'index'])->name('schools');
@@ -68,6 +71,8 @@ Route::get('classes/{slug}/view', [ClassesController::class,'view'])->name('clas
 Route::get('classes/{slug}/unit_standard', [ClassesController::class,'view'])->name('class/unit_standard');
 Route::get('class/{slug}/students', [LearnerController::class,'view'])->name('class/students');
 Route::post('class/{slug}/add_us', [ClassesController::class,'add_us'])->name('class/add_us');
+Route::post('class/add_assessor', [ClassesController::class,'add_assessor']);
+Route::post('class/add_moderator', [ClassesController::class,'add_moderator']);
 
 // //unit_standards
 Route::get('unit_standard', [Unit_standardController::class,'unit_standard'])->name('unit_standard');
@@ -77,6 +82,7 @@ Route::get('class/{slug}/us', [Unit_standardController::class,'class_us'])->name
 Route::get('unit_standard/{name}/details', [Unit_standardController::class,'details'])->name('unit_standard/details');
 
 // learners
+Route::post('school/{slug}/add_learner', [LearnerController::class,'store']);
 Route::get('learner/view', [LearnerController::class,'index'])->name('learners/view');
 Route::get('class/{slug}/students', [ClassesController::class,'students'])->name('class/students');
 Route::get('section_one', [LearnerController::class,'section_one'])->name('section_one');

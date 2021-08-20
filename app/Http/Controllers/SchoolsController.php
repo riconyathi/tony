@@ -45,7 +45,8 @@ class SchoolsController extends Controller{
             'identinty'=> $fields['identinty'],
             'name'=> $fields['contact_person'],
             'surname'=> $fields['contact_person_surname'],
-            'password' => Hash::make($fields['password'])
+            'password' => Hash::make($fields['password']),
+            'role'=> 'admin'
             
         ]);
 

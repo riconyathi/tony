@@ -11,9 +11,10 @@ use App\Models\User;
 
 class ClassesController extends Controller{
     public function index($slug){
-        $school =  School::with('admin.user')->with('classes')->where('slug',$slug)->first();
-        //dd($school);
-        return view('school_details',compact('school'));
+        $school =  School::with('admin.user')->with('classes.assessor')->with('classes.moderator')->where('slug',$slug)->first();
+        
+        $users = User::where('role','assessor')->orWhere('role', 'moderator')->get();
+        return view('school_details',compact('school','users'));
         
     }
 
@@ -23,7 +24,8 @@ class ClassesController extends Controller{
             'name' => ['required', 'max:255'],
             'school_id' => ['required']
         ]);
-
+        
+        
         $school = Classes::create([
             'name'=> $fields['name'],
             'slug'=> $fields['name'],
@@ -65,6 +67,36 @@ class ClassesController extends Controller{
  
 }
 
+public function add_assessor(Request $request){
+      
+    Classes::where('id',$request->class_id)
+        ->update([ 
+            'assessor_id' => $request->assessor_id    
+        ]);
+     
+     return redirect()->back();
+ 
+}
+
+public function add_moderator(Request $request){
+      
+    Classes::where('id',$request->class_id)
+        ->update([ 
+            'moderator_id' => $request->moderator_id    
+        ]);
+     
+     return redirect()->back();
+ 
+}
+
+public function add_student(Request $request){
+      
+    dd($request);
+   
+     
+     return redirect()->back();
+ 
+}
    public function view($slug){
         
     $school =  School::where('slug',$slug)->first();

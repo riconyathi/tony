@@ -35,4 +35,14 @@ class Classes extends Model
     {
          return $this->belongsToMany(Learner::class, 'class_learner', 'class_id', 'learner_id');
      }
+
+     public function assessor()
+    {
+         return $this->belongsTo(User::class);
+     }
+
+     public function moderator()
+    {
+         return $this->belongsTo(User::class);
+     }
 }

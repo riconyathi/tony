@@ -661,64 +661,6 @@
 
 
 
-{{-- create student --}}
-
-<div class="modal fade" id="create_student" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document"
-    style="box-shadow: 0 3px 3px -2px rgb(39 44 51 / 10%), 0 3px 4px 0 rgb(39 44 51 / 4%), 0 1px 8px 0 rgb(39 44 51 / 2%);">
-    <div class="modal-content">
-      <form action="/leaner/create" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Create </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
-
-            <div class="list-group-item" style="border: none !important;">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-3">
-                  Student Name</label>
-                <div class="col-sm-9">
-                  <input name="name" type="text" class="form-control" placeholder="John Peter">
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item" style="border: none !important;">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-3">
-                  Student Surname</label>
-                <div class="col-sm-9">
-                  <input name="surname" type="text" class="form-control" placeholder="Doe">
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item" style="border: none !important;">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-3">
-                  Student ID/Passport
-                </label>
-                <div class="col-sm-9">
-                  <input name="identinty" type="text" class="form-control" placeholder="00000000000000/CN44444">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-outline-secondary">Add</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-{{-- create student end --}}
-
 
 
 {{-- create user --}}
@@ -734,60 +676,94 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
+      <form action="user/create" method="post">
+        @csrf
+        <div class="modal-body">
+          <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
 
-          <div class="list-group-item" style="border: none !important;">
-            <div class="form-group row align-items-center mb-0">
-              <label class="form-label col-form-label col-sm-3">
-                User Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Name ">
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  User Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="name">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="list-group-item" style="border: none !important;">
-            <div class="form-group row align-items-center mb-0">
-              <label class="form-label col-form-label col-sm-3">
-                User Email
-              </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder=" Assessor Name">
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  User Surname</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="surname">
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="list-group-item" style="border: none !important;">
-            <div class="form-group row align-items-center mb-0">
-              <label class="form-label col-form-label col-sm-3">
-                User Phone
-              </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="phone">
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Identinty
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="identinty">
+                </div>
               </div>
             </div>
-          </div>
+
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Password
+                </label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" name="password">
+                </div>
+              </div>
+            </div>
+
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Confirm Password
+                </label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" name="password_confirmation">
+                </div>
+              </div>
+            </div>
 
 
-          <div class="list-group-item" style="border: none !important;">
-            <div class="form-group row align-items-center mb-0">
-              <label class="form-label col-form-label col-sm-3">
-                Role
-              </label>
-              <div class="col-sm-9">
-                <select type="text" class="form-control form-custom">
-                  <option>admin</option>
-                  <option>moderator</option>
-                  <option>Assessor</option>
-                </select>
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Role
+                </label>
+                <div class="col-sm-9">
+                  <select type="text" class="form-control form-custom" name="role">
+
+                    <option value="assessor">Assessor</option>
+                    <option value="moderator">Moderator</option>
+
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Assessor/Moderator Number
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="number">
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline-secondary">Add</button>
-      </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary">Add</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

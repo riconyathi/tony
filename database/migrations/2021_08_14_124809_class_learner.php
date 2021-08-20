@@ -28,6 +28,6 @@ class ClassLearner extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('class_learner');
     }
 }
