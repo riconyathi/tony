@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Unit_standard;
 use App\Models\Classes;
+use App\Models\Learner;
 
 class Unit_standardController extends Controller{
     public function index(){
@@ -49,6 +50,8 @@ class Unit_standardController extends Controller{
             'summative' => ['required','min:3', 'max:255'],
             'other' => ['min:3','max:255']
         ]);
+
+       
 
         //dd($request->us_copies);
         //store documents
@@ -111,6 +114,14 @@ class Unit_standardController extends Controller{
         $unit_standards = $class[0]->unit_standard;
         return view('class_unit_standard',compact('unit_standards'));
       }
+
+
+      public function section_2(){
+        $datas = Learner::with('school.classes.unit_standard')->where('user_id',auth()->user()->id)->first();
+        
+         
+        return view('section_2',compact('datas'));   
+    }
 
     }
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Learner;
 use App\Models\Tertiary;
+use App\Models\Classes;
 use App\Models\Employment;
 use Illuminate\Http\Request;
+use Hash;
 
 class LearnerController extends Controller
 {
@@ -24,17 +26,21 @@ class LearnerController extends Controller
         $fields = $request->validate([
             'name' => ['required','min:3', 'max:255'],
             'surname' => ['required','min:3', 'max:255'],
-            'identinty' => ['required','min:6', 'max:20']
+            'identinty' => ['required','min:6', 'max:20'],
+            'school_id' => ['required']
         ]);
         
         $user = User::create([
             'name' => $fields['name'],
             'surname' => $fields['surname'],
-            'identinty' => $fields['identinty']
+            'identinty' => $fields['identinty'],
+            'password' => Hash::make('123456789'),
+            'role'=> 'learner'
         ]);
         
         Learner::create([
-            'user_id'=> $user->id
+            'user_id'=> $user->id,
+            'school_id'=> $fields['school_id'] 
         ]);
         
         return redirect()->back();
@@ -46,10 +52,7 @@ class LearnerController extends Controller
         
         return view('section_one',compact('user'));
     }
-    public function section_2(){
-        return view('section_2');
-        
-    }
+    
     
     public function tertiary_details(){
         $datas = Tertiary::where('user_id',auth()->user()->id)->get();
@@ -64,9 +67,9 @@ class LearnerController extends Controller
        
     }
     
-    public function school_details($id){
-        $user = Learner::where('user_id',$id)->first();
-        return view('school_details',compact('user'));
+    public function school_details(){
+        $user = Learner::where('user_id',auth()->user()->id)->first();
+        return view('learner_school_details',compact('user'));
         
     }
     
@@ -188,6 +191,21 @@ class LearnerController extends Controller
 
         
         return  redirect()->back();
+        
+    }
+
+    public function add_to_class(Request $request,$slug){
+
+        $class =  Classes::where('slug',$slug)->first();
+
+        foreach ($request->learners as $id) {
+            $class->learner()->attach($id);
+        
+        }
+         
+         return redirect()->back();
+
+
         
     }
 }

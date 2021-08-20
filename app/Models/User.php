@@ -67,4 +67,9 @@ class User extends Authenticatable
         {
             return $this->hasOne(Moderator::class);
         }
+
+        public function classes(){
+
+            return $this->belongsToMany(Classes::class, 'class_user', 'class_id', 'user_id');
+         }
 }

@@ -67,7 +67,7 @@ Route::delete('school/{id}', [SchoolsController::class,'destroy'])->name('school
 Route::get('school/{slug}/view', [ClassesController::class,'index'])->name('school/view');
 Route::post('class/create', [ClassesController::class,'store']);
 Route::delete('classes', [ClassesController::class,'destroy'])->name('classe-delete');
-Route::get('classes/{slug}/view', [ClassesController::class,'view'])->name('class/view');
+Route::get('classes/{slug}/view', [ClassesController::class,'class_details'])->name('class/view');
 Route::get('classes/{slug}/unit_standard', [ClassesController::class,'view'])->name('class/unit_standard');
 Route::get('class/{slug}/students', [LearnerController::class,'view'])->name('class/students');
 Route::post('class/{slug}/add_us', [ClassesController::class,'add_us'])->name('class/add_us');
@@ -75,7 +75,7 @@ Route::post('class/add_assessor', [ClassesController::class,'add_assessor']);
 Route::post('class/add_moderator', [ClassesController::class,'add_moderator']);
 
 // //unit_standards
-Route::get('unit_standard', [Unit_standardController::class,'unit_standard'])->name('unit_standard');
+Route::get('unit_standard', [Unit_standardController::class,'index'])->name('unit_standard');
 Route::post('unit_standard/create', [Unit_standardController::class,'store']);
 Route::get('unit_standard/{slug}/view', [Unit_standardController::class,'view'])->name('unit_standard/view');
 Route::get('class/{slug}/us', [Unit_standardController::class,'class_us'])->name('class/us');
@@ -83,15 +83,16 @@ Route::get('unit_standard/{name}/details', [Unit_standardController::class,'deta
 
 // learners
 Route::post('school/{slug}/add_learner', [LearnerController::class,'store']);
+Route::post('learner/{slug}/add_to_class', [LearnerController::class,'add_to_class']);
 Route::get('learner/view', [LearnerController::class,'index'])->name('learners/view');
 Route::get('class/{slug}/students', [ClassesController::class,'students'])->name('class/students');
 Route::get('section_one', [LearnerController::class,'section_one'])->name('section_one');
-Route::get('section_2', [LearnerController::class,'section_2'])->name('section_2');
+Route::get('section_2', [Unit_standardController::class,'section_2'])->name('section_2');
 Route::post('learner/{id}/update', [LearnerController::class,'update']);
 Route::post('learner/{id}/section_2', [LearnerController::class,'updateSection_2']);
-Route::get('school_details/{id}', [LearnerController::class,'school_details'])->name('school_details');
+Route::get('school_details', [LearnerController::class,'school_details'])->name('school_details');
 Route::post('learner/{id}/school_details', [LearnerController::class,'school_details_update']);
-Route::get('tertiary_details/{id}', [LearnerController::class,'tertiary_details'])->name('tertiary_details');
+Route::get('tertiary_details', [LearnerController::class,'tertiary_details'])->name('tertiary_details');
 Route::post('learner/{id}/tertiary_details', [LearnerController::class,'update_tertiary_details']);
 Route::get('employment_history', [LearnerController::class,'employment'])->name('employment');
 Route::post('learner/{id}/employment_history', [LearnerController::class,'update_employment_history']);

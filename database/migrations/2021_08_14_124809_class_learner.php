@@ -13,10 +13,10 @@ class ClassLearner extends Migration
      */
     public function up()
     {
-        Schema::create('class_learner', function (Blueprint $table) {
+        Schema::create('class_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('class_id')->onDelete('cascade');
-            $table->foreignId('learner_id')->onDelete('cascade');
+            $table->foreignId('user_id')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class ClassLearner extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_learner');
+        Schema::dropIfExists('class_user');
     }
 }

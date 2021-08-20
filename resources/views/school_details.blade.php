@@ -127,7 +127,8 @@
 
                                 <td>
 
-                                    <a href="" class="chip chip-outline-secondary">User</a>
+                                    <a href="{{route('class/view',$class->slug)}}"
+                                        class="chip chip-outline-secondary"><i class="fas fa-eye"></i></a>
 
                                 </td>
 
@@ -195,11 +196,14 @@
                                 <div class="media-body">
 
                                     <div class="d-flex flex-column">
+                                        @if($school->classes != null)
+
                                         <p class="mb-0"><strong
                                                 class="js-lists-values-employee-name">{{$school->classes[0]->assessor->name}}</strong>
                                         </p>
                                         <small
                                             class="js-lists-values-employee-email text-50">{{$school->classes[0]->assessor->identinty}}</small>
+                                        @endif
                                     </div>
 
                                 </div>
@@ -234,7 +238,7 @@
                 <div class="flex row">
                     <div class="col-auto d-flex flex-column">
 
-                        <p class="mb-0"><strong>Studenst</strong></p>
+                        <p class="mb-0"><strong>Students</strong></p>
                     </div>
 
                 </div>
@@ -262,6 +266,8 @@
                     </tr>
                 </thead>
                 <tbody class="list" id="toggle">
+                    @foreach ($learners as $learner)
+
                     <tr>
 
                         <td>
@@ -275,8 +281,9 @@
                                 <div class="media-body">
 
                                     <div class="d-flex flex-column">
-                                        <p class="mb-0"><strong class="js-lists-values-employee-name">Connie
-                                                Smith</strong></p>
+                                        <p class="mb-0"><strong
+                                                class="js-lists-values-employee-name">{{$learner->user->name}}</strong>
+                                        </p>
                                         <small
                                             class="js-lists-values-employee-email text-50">paolo.zieme@gmail.com</small>
                                     </div>
@@ -296,6 +303,9 @@
                         <td class="js-lists-values-earnings small">$1,943</td>
 
                     </tr>
+
+
+                    @endforeach
 
                 </tbody>
             </table>
@@ -352,11 +362,13 @@
                                 <div class="media-body">
 
                                     <div class="d-flex flex-column">
+                                        @if($school->classes != null)
                                         <p class="mb-0"><strong
                                                 class="js-lists-values-employee-name">{{$school->classes[0]->moderator->name}}</strong>
                                         </p>
                                         <small
                                             class="js-lists-values-employee-email text-50">{{$school->classes[0]->moderator->identinty}}</small>
+                                        @endif
                                     </div>
 
                                 </div>
@@ -664,7 +676,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
-
+                        <input name="school_id" type="hidden" class="form-control" value="{{$school->id}}">
                         <div class="list-group-item" style="border: none !important;">
                             <div class="form-group row align-items-center mb-0">
                                 <label class="form-label col-form-label col-sm-3">

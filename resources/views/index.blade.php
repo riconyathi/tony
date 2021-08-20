@@ -243,6 +243,59 @@
 
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-header-tabs-basic nav justify-content-center" role="tablist">
+
+                    <div class="card-body d-flex align-items-center justify-content-center" style="height: 220px;">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="position-relative" style="height: calc(220px - 1rem * 2);">
+                                    <div class="chartjs-size-monitor">
+                                        <div class="chartjs-size-monitor-expand">
+                                            <div class=""></div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink">
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
+
+                                        <span>
+                                            <h5 class="text-muted">Unit Standards</h5>
+                                        </span>
+                                        <span><a href="{{ route('unit_standard') }}"
+                                                class="btn btn-outline-secondary">Get
+                                                started</a></span>
+                                    </div>
+                                    <canvas class="chart-canvas chartjs-render-monitor" id="locationDoughnutChart"
+                                        data-chart-legend="#locationDoughnutChartLegend"
+                                        data-chart-line-background-color="teal;primary;gray" data-chart-suffix="%"
+                                        width="180" height="188" style="display: block; width: 180px; height: 188px;"
+                                        data-chart-line-background-opacity="1;1;0.24">
+                                        <span style="font-size: 1rem;" class="text-muted"><strong>Location</strong>
+                                            doughnut chart goes here.</span>
+                                    </canvas>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div id="locationDoughnutChartLegend" class="chart-legend chart-legend--vertical"><span
+                                        class="chart-legend-item"><i class="chart-legend-indicator"
+                                            style="background-color: rgba(0, 188, 194, 1)"></i>United States</span><span
+                                        class="chart-legend-item"><i class="chart-legend-indicator"
+                                            style="background-color: rgba(33, 150, 243, 1)"></i>United
+                                        Kingdom</span><span class="chart-legend-item"><i class="chart-legend-indicator"
+                                            style="background-color: rgba(227, 235, 246, 0.24)"></i>Germany</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
         @endif
     </div>
 </div>

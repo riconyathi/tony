@@ -16,6 +16,7 @@ class CreateLearnersTable extends Migration
         Schema::create('learners', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique();
+            $table->foreignId('school_id');
             $table->enum('race',['white','black','coloured','indian','other'])->nullable();
             $table->string('citizenship')->nullable();
             $table->enum('marital_status',['single','married','window','windower','other'])->nullable();

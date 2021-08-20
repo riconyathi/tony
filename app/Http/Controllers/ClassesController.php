@@ -14,7 +14,10 @@ class ClassesController extends Controller{
         $school =  School::with('admin.user')->with('classes.assessor')->with('classes.moderator')->where('slug',$slug)->first();
         
         $users = User::where('role','assessor')->orWhere('role', 'moderator')->get();
-        return view('school_details',compact('school','users'));
+
+        $learners = Learner::with('user')->where('school_id',$school->id)->get();
+
+        return view('school_details',compact('school','users','learners'));
         
     }
 
@@ -54,18 +57,6 @@ class ClassesController extends Controller{
      
    }
 
-   public function add_learner(Request $request,$slug){
-      
-    $class =  Classes::where('slug',$slug)->first();
-
-    foreach ($request->learners as $id) {
-        $class->learner()->attach($id);
-    
-    }
-     
-     return redirect()->back();
- 
-}
 
 public function add_assessor(Request $request){
       
@@ -89,20 +80,23 @@ public function add_moderator(Request $request){
  
 }
 
-public function add_student(Request $request){
-      
-    dd($request);
-   
-     
-     return redirect()->back();
- 
-}
+
    public function view($slug){
         
     $school =  School::where('slug',$slug)->first();
     
     
     return view('view_class',compact('school'));
+  
+}
+
+public function class_details($slug){
+        
+    $class =  Classes::withCount('unit_standard')->with('Unit_standard','learner')->where('slug',$slug)->first();
+    $unit_standards = Unit_standard::all();
+    $learners = Learner::where('school_id',$class->school_id)->get();
+    //dd($class);
+    return view('view_class',compact('class', 'unit_standards','learners'));
   
 }
 
