@@ -18,9 +18,9 @@ class CreateFeedbackTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('us_id');
             $table->enum('attempt',['1st','2nd','3rd']);
-            $table->enum('knowledge_questionare',['Compentent','Not Yet Compentent']);
-            $table->enum('practical_questionare',['Compentent','Not Yet Compentent']);
-            $table->enum('overall',['Compentent','Not Yet Compentent']);
+            $table->enum('knowledge_questionare',['Competent','Not Yet Competent']);
+            $table->enum('practical_questionare',['Competent','Not Yet Competent']);
+            $table->enum('overall',['Competent','Not Yet Competent']);
             $table->string('comments');
             $table->string('action_plan');
             $table->string('learner_signature');

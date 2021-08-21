@@ -105,6 +105,8 @@ Route::post('evidence/upload', [EvidenceController::class,'upload']);
 Route::get('feedback', [FeedbackController::class,'feedback'])->name('feedback');
 Route::post('feedback', [FeedbackController::class,'store']);
 Route::get('review', [FeedbackController::class,'review'])->name('review');
+Route::post('review', [FeedbackController::class,'review_update']);
 Route::get('assessment_evaluation', [FeedbackController::class,'assessment_evaluation'])->name('assessment_evaluation');
+Route::post('assessment_evaluation', [FeedbackController::class,'assessment_evaluation_update']);
 
 });
