@@ -21,7 +21,7 @@ class Unit_standardController extends Controller{
     }
 
     public function details($name){
-      $unit_standard =  Unit_standard::where('us_name',$name)->first();
+      $unit_standard =  Unit_standard::with('evidence')->where('us_name',$name)->first();
        
       return view('view_unit_standard',compact('unit_standard'));
     }
@@ -86,7 +86,7 @@ class Unit_standardController extends Controller{
          }
         //  //
          if($request->file('other')){
-        $file = $request->file('summative');
+        $file = $request->file('other');
          $other = time().'_'.$request->file('other')->getClientOriginalName();
          $file->storeAs('us_docs', $other, 'public');
          }

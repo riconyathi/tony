@@ -19,7 +19,6 @@
 </div>
 
 
-
 <div class="container page__container page__container page-section">
     @foreach ($datas->school->classes as $class)
 

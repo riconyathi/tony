@@ -19,5 +19,9 @@ class Unit_standard extends Model
 
     return $this->belongsToMany(Classes::class, 'class_unit_standard', 'class_id', 'us_id');
  }
+
+ public function evidence(){
+    return $this->hasMany(Evidence::class, 'us_id');
+}
     
 }

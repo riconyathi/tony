@@ -25,6 +25,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SchoolsController;
 use App\Http\Controllers\LearnerController;
+use App\Http\Controllers\EvidenceController;
 
 Route::get('login', [UsersController::class,'login'])->name('login');
 Route::post('auth', [UsersController::class,'authenticate']);
@@ -35,17 +36,17 @@ Route::get('about', [AboutController::class,'about'])->name('about');
 Route::get('myAccount', [AccountController::class,'account'])->name('account');
 
 Route::middleware(['auth'])->group(function () {
+
 Route::get('/', [IndexController::class,'index'])->name('index');
 
-
-
+//super admin
 
 Route::get('section_3', [Section_3Controller::class,'section_3'])->name('section_3');
 Route::get('assessment_evidence', [Assessment_evidenceController::class,'assessment_evidence'])->name('assessment_evidence');
 Route::get('section_4', [Section_4Controller::class,'section_4'])->name('section_4');
-Route::get('feedback', [FeedbackController::class,'feedback'])->name('feedback');
-Route::get('assessment_evaluation', [EvaluationController::class,'assessment_evaluation'])->name('assessment_evaluation');
-Route::get('review', [ReviewController::class,'review'])->name('review');
+
+
+
 Route::get('section_5', [Section_5Controller::class,'section_5'])->name('section_5');
 Route::get('observation', [ObservationController::class,'observation'])->name('observation');
 
@@ -96,4 +97,14 @@ Route::get('tertiary_details', [LearnerController::class,'tertiary_details'])->n
 Route::post('learner/{id}/tertiary_details', [LearnerController::class,'update_tertiary_details']);
 Route::get('employment_history', [LearnerController::class,'employment'])->name('employment');
 Route::post('learner/{id}/employment_history', [LearnerController::class,'update_employment_history']);
+
+//evidence
+Route::post('evidence/upload', [EvidenceController::class,'upload']);
+
+//feedback
+Route::get('feedback', [FeedbackController::class,'feedback'])->name('feedback');
+Route::post('feedback', [FeedbackController::class,'store']);
+Route::get('review', [FeedbackController::class,'review'])->name('review');
+Route::get('assessment_evaluation', [FeedbackController::class,'assessment_evaluation'])->name('assessment_evaluation');
+
 });

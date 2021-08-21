@@ -22,7 +22,7 @@
 
 <div class="container page__container page-section">
                 <div class="page-separator">
-                        <div class="page-separator__text">Learner Assessment Tools</div>
+                        <div class="page-separator__text">Learner Assessment Evaluation</div>
                     </div>
 
                     <div class="dashboard-area-tabs p-relative o-hidden">
@@ -96,19 +96,6 @@
                                         </div>
                                         <hr>
 
-
-
-
-
-
-
-
-
-
-
-
-                                        
-                                        
                                          <div class="list-group-item" style="border: none !important;border-top: 1px solid #e5e5e5 !important">
                                            <div class="list-group-item" style="border: none !important;border-bottom: 1px solid #e5e5e5 !important">
                                             <div class="form-group row align-items-center mb-0">
@@ -326,42 +313,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 d-flex align-items-center p-3">
-                            <div class="flex" style="max-width: 100%">
-
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination pagination-sm ">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true" class="material-icons">chevron_left</span>
-                                                <span>Prev</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#" aria-label="1">
-                                                <span>1</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="2">
-                                                <span>2</span>
-                                            </a>
-                                        </li>
-
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span>Next</span>
-                                                <span aria-hidden="true" class="material-icons">chevron_right</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </nav>
-
-                            </div>
-                        </div>
                         </div>
                         	
 

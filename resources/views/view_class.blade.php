@@ -13,12 +13,18 @@
                <li class="breadcrumb-item active">
                   View
                </li>
-            </ol>
-            <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal" data-target="#add_us">Add
-               Us</button>
-            <br><br>
-            <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal"
+               <li class="breadcrumb-item active">
+                  <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal" data-target="#add_us">Add
+                     Us</button>
+               </li>
+               <li class="breadcrumb-item active">
+                  <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal"
                data-target="#add_student">Add Student</button>
+               </li>
+            </ol>
+            
+            <br><br>
+            
             <br><br>
          </div>
 
@@ -26,6 +32,7 @@
 
    </div>
 </div>
+
 
 <div class="row m-3">
    <div class="col-lg-6 card-group-row__col">
@@ -44,21 +51,15 @@
                   <div class="custom-control custom-checkbox">
 
                      {{$class->name}}
+                     
                   </div>
                </li>
                <li>
-                  <div class="custom-control custom-checkbox">
-                     <div class="card">
-                        <div class="card-body">
+                 
+                     <div class="card" style="box-shadow: none">
+                        <div class="card-header">
                            <h4 class="card-title">{{$class->name}}</h4>
-                           <p class="card-subtitle mb-3">Titles can go in body as well</p>
-
-                           <p class="text-70">With supporting text below as a natural lead-in to additional content.</p>
-                           <a href="#" class="btn btn-outline-secondary">Get started</a>
-                        </div>
-                        <div class="card-footer d-flex align-items-center">
-
-                           <div class="dropup">
+                           <div class="dropup float-right pull-right" style="margin-top: -1rem">
                               <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
                                  <i class="material-icons">more_horiz</i>
                               </a>
@@ -69,24 +70,23 @@
                               </div>
                            </div>
                         </div>
-                     </div>
-
-
-                  </div>
-               </li>
-               <li>
-                  <div class="custom-control custom-checkbox">
-                     <div class="card">
                         <div class="card-body">
-                           <h4 class="card-title">{{$class->name}}</h4>
+                          
                            <p class="card-subtitle mb-3">Titles can go in body as well</p>
 
                            <p class="text-70">With supporting text below as a natural lead-in to additional content.</p>
                            <a href="#" class="btn btn-outline-secondary">Get started</a>
                         </div>
-                        <div class="card-footer d-flex align-items-center">
+        
+                     </div>
 
-                           <div class="dropup">
+               </li>
+               <li>
+             
+                     <div class="card" style="box-shadow: none">
+                        <div class="card-header">
+                           <h4 class="card-title">{{$class->name}}</h4>
+                           <div class="dropup float-right pull-right" style="margin-top: -1rem">
                               <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
                                  <i class="material-icons">more_horiz</i>
                               </a>
@@ -97,10 +97,17 @@
                               </div>
                            </div>
                         </div>
+                        <div class="card-body">
+                          
+                           <p class="card-subtitle mb-3">Titles can go in body as well</p>
+
+                           <p class="text-70">With supporting text below as a natural lead-in to additional content.</p>
+                           <a href="#" class="btn btn-outline-secondary">Get started</a>
+                        </div>
+                       
                      </div>
 
 
-                  </div>
                </li>
 
             </ul>
@@ -116,41 +123,53 @@
 
          </div>
          <div class="progress rounded-0" style="height: 4px;">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="40"
-               aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
+               aria-valuemin="100" aria-valuemax="100"></div>
          </div>
-         <div class="card-body">
-            <table class="table mb-0 thead-border-top-0 table-nowrap">
-               <thead>
-                  <tr>
+      
+
+               <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-employee-name" data-lists-values="[&quot;js-lists-values-employee-name&quot;, &quot;js-lists-values-employer-name&quot;, &quot;js-lists-values-projects&quot;, &quot;js-lists-values-activity&quot;, &quot;js-lists-values-earnings&quot;]">
+
+                   <div class="card-header">
+                       <form class="form-inline">
+                           <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
+                           <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
+
+                       </form>
+                   </div>
+
+                   <table class="table mb-0 thead-border-top-0 table-nowrap">
+                       <thead>
+                        <tr>
 
 
 
-                     <th style="width: 150px;">
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Us ID</a>
-                     </th>
-
-                     <th>
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">US Title</a>
-                     </th>
-
-                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">US Credits</a>
-                     </th>
-
-                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">US Level</a>
-                     </th>
-
-                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">View</a>
-                     </th>
-
-
-                  </tr>
-               </thead>
-               <tbody class="list" id="projects">
-                  @foreach ($class->unit_standard as $unit_standard)
+                           <th style="width: 150px;">
+                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Us ID</a>
+                           </th>
+      
+                           <th>
+                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">US Title</a>
+                           </th>
+      
+                           <th style="width: 48px;">
+                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">US Credits</a>
+                           </th>
+      
+                           <th style="width: 48px;">
+                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">US Level</a>
+                           </th>
+      
+                           <th style="width: 48px;">
+                              <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">View</a>
+                           </th>
+      
+      
+                        </tr>
+                       </thead>
+                       <tbody class="list" id="staff">
+                          
+                        @foreach ($class->unit_standard as $unit_standard)
 
                   <tr>
                      <td>
@@ -213,118 +232,137 @@
                   </tr>
 
                   @endforeach
-               </tbody>
-            </table>
-         </div>
+                        </tbody>
+                   </table>
+               </div>
 
-      </div>
+        
+       
+
+           </div>
+           
+         
    </div>
 
    <div class="col-lg-12 card-group-row__col">
+
+      
       <div class="card card-group-row__card">
          <div class="card-header d-flex align-items-center">
             <strong class="flex">Students</strong>
 
          </div>
          <div class="progress rounded-0" style="height: 4px;">
-            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="40"
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="40"
                aria-valuemin="0" aria-valuemax="100"></div>
          </div>
          <div class="card-body">
-            <table class="table mb-0 thead-border-top-0 table-nowrap">
-               <thead>
-                  <tr>
-
-
-
-                     <th style="width: 150px;">
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Project</a>
-                     </th>
-
-                     <th>
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">Lead / Team</a>
-                     </th>
-
-                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">Status</a>
-                     </th>
-
-                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">Budget</a>
-                     </th>
-
-                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">Due</a>
-                     </th>
-
-
-                  </tr>
-               </thead>
-               <tbody class="list" id="projects">
-                  @foreach ($class->learner as $learner)
-
-                  <tr>
-                     <td>
-
-                        <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
-                           <div class="avatar avatar-sm mr-8pt">
-
+                          <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-employee-name" data-lists-values="[&quot;js-lists-values-employee-name&quot;, &quot;js-lists-values-employer-name&quot;, &quot;js-lists-values-projects&quot;, &quot;js-lists-values-activity&quot;, &quot;js-lists-values-earnings&quot;]">
+                           <div class="card-header">
+                               <div class="search-form">
+                                   <input type="text" class="form-control search" placeholder="Search ...">
+                                   <button class="btn" type="button" role="button"><i class="material-icons">search</i></button>
+                               </div>
                            </div>
-                           <div class="media-body">
-                              <div class="d-flex flex-column">
-                                 <small class="js-lists-values-project"><strong>{{$learner->name}}</strong></small>
-                                 <small class="js-lists-values-location text-50">{{$learner->surname}}</small>
-                              </div>
-                           </div>
-                        </div>
+                           <table class="table mb-0 thead-border-top-0 table-nowrap">
+                               <thead>
+                                 <tr>
 
-                     </td>
 
-                     <td>
 
-                        <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
+                                    <th style="width: 150px;">
+                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Project</a>
+                                    </th>
+               
+                                    <th>
+                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">Lead / Team</a>
+                                    </th>
+               
+                                    <th style="width: 48px;">
+                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">Status</a>
+                                    </th>
+               
+                                    <th style="width: 48px;">
+                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">Budget</a>
+                                    </th>
+               
+                                    <th style="width: 48px;">
+                                       <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">Due</a>
+                                    </th>
+               
+               
+                                 </tr>
+                               </thead>
+                               <tbody class="list" id="search">
+                                 @foreach ($class->learner as $learner)
 
-                           <div class="media-body">
+                                 <tr>
+                                    <td>
+               
+                                       <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
+                                          <div class="avatar avatar-sm mr-8pt">
+               
+                                          </div>
+                                          <div class="media-body">
+                                             <div class="d-flex flex-column">
+                                                <small class="js-lists-values-project"><strong>{{$learner->name}}</strong></small>
+                                                <small class="js-lists-values-location text-50">{{$learner->surname}}</small>
+                                             </div>
+                                          </div>
+                                       </div>
+               
+                                    </td>
+               
+                                    <td>
+               
+                                       <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
+               
+                                          <div class="media-body">
+               
+                                             <div class="d-flex align-items-center">
+                                                <div class="flex d-flex flex-column">
+                                                   <p class="mb-0"><strong
+                                                         class="js-lists-values-lead">{{$learner->identinty}}</strong></p>
+                                                   <small class="js-lists-values-email text-50">{{$learner->email}}</small>
+                                                </div>
+                                             </div>
+               
+                                          </div>
+                                       </div>
+               
+                                    </td>
+               
+                                    <td>
+                                       <div class="d-flex flex-column">
+                                          <small class="js-lists-values-status text-50 mb-4pt">QA</small>
+                                          <span class="indicator-line rounded bg-warning"></span>
+                                       </div>
+                                    </td>
+               
+                                    <td>
+                                       <div class="d-flex flex-column">
+                                          <small class="js-lists-values-budget"><strong>$1,200</strong></small>
+                                          <small class="text-50">Invoice Sent</small>
+                                       </div>
+                                    </td>
+               
+                                    <td>
+                                       <div class="d-flex flex-column">
+                                          <small class="js-lists-values-date"><strong>19/02/2019</strong></small>
+                                          <small class="text-50">18 days</small>
+                                       </div>
+                                    </td>
+               
+                                 </tr>
+               
+                                 @endforeach                                                                                
+                                 </tbody>
+                           </table>
+                       </div>
 
-                              <div class="d-flex align-items-center">
-                                 <div class="flex d-flex flex-column">
-                                    <p class="mb-0"><strong
-                                          class="js-lists-values-lead">{{$learner->identinty}}</strong></p>
-                                    <small class="js-lists-values-email text-50">{{$learner->email}}</small>
-                                 </div>
-                              </div>
+                   
 
-                           </div>
-                        </div>
-
-                     </td>
-
-                     <td>
-                        <div class="d-flex flex-column">
-                           <small class="js-lists-values-status text-50 mb-4pt">QA</small>
-                           <span class="indicator-line rounded bg-warning"></span>
-                        </div>
-                     </td>
-
-                     <td>
-                        <div class="d-flex flex-column">
-                           <small class="js-lists-values-budget"><strong>$1,200</strong></small>
-                           <small class="text-50">Invoice Sent</small>
-                        </div>
-                     </td>
-
-                     <td>
-                        <div class="d-flex flex-column">
-                           <small class="js-lists-values-date"><strong>19/02/2019</strong></small>
-                           <small class="text-50">18 days</small>
-                        </div>
-                     </td>
-
-                  </tr>
-
-                  @endforeach
-               </tbody>
-            </table>
+           
 
          </div>
 
