@@ -1,4 +1,10 @@
 <?php
+/**
+ * 
+ * code by Rico Nyathi
+ * nexgen 
+ * Date 23/08/2021
+ */
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
@@ -26,6 +32,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SchoolsController;
 use App\Http\Controllers\LearnerController;
 use App\Http\Controllers\EvidenceController;
+use App\Http\Controllers\AuthenticityController;
 
 Route::get('login', [UsersController::class,'login'])->name('login');
 Route::post('auth', [UsersController::class,'authenticate']);
@@ -39,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [IndexController::class,'index'])->name('index');
 
-//super admin
+
 
 Route::get('section_3', [Section_3Controller::class,'section_3'])->name('section_3');
 Route::get('assessment_evidence', [Assessment_evidenceController::class,'assessment_evidence'])->name('assessment_evidence');
@@ -58,11 +65,13 @@ Route::get('password', [PasswordController::class,'password'])->name('password')
 Route::get('users', [UsersController::class,'users'])->name('users');
 Route::post('user/create', [UsersController::class,'create']);
 
+Route::middleware(['admin'])->group(function () {
 // //school 
 Route::get('schools', [SchoolsController::class,'index'])->name('schools');
 Route::post('school/create', [SchoolsController::class,'store']);
-Route::delete('school/{id}', [SchoolsController::class,'destroy'])->name('school-delete');
-
+Route::delete('school', [SchoolsController::class,'destroy']);
+ 
+});
 
 // //classes
 Route::get('school/{slug}/view', [ClassesController::class,'index'])->name('school/view');
@@ -74,11 +83,14 @@ Route::get('class/{slug}/students', [LearnerController::class,'view'])->name('cl
 Route::post('class/{slug}/add_us', [ClassesController::class,'add_us'])->name('class/add_us');
 Route::post('class/add_assessor', [ClassesController::class,'add_assessor']);
 Route::post('class/add_moderator', [ClassesController::class,'add_moderator']);
+Route::post('class/remove_assessor', [ClassesController::class,'remove_assessor']);
+Route::post('class/remove_moderator', [ClassesController::class,'remove_moderator']);
 
 // //unit_standards
 Route::get('unit_standard', [Unit_standardController::class,'index'])->name('unit_standard');
 Route::post('unit_standard/create', [Unit_standardController::class,'store']);
-Route::get('unit_standard/{slug}/view', [Unit_standardController::class,'view'])->name('unit_standard/view');
+Route::get('unit_standard/view', [Unit_standardController::class,'index'])->name('unit_standard/view');
+Route::get('unit_standard/{slug}/view_details', [Unit_standardController::class,'view_details'])->name('unit_standard/view_details');
 Route::get('class/{slug}/us', [Unit_standardController::class,'class_us'])->name('class/us');
 Route::get('unit_standard/{name}/details', [Unit_standardController::class,'details'])->name('unit_standard/details');
 
@@ -108,5 +120,9 @@ Route::get('review', [FeedbackController::class,'review'])->name('review');
 Route::post('review', [FeedbackController::class,'review_update']);
 Route::get('assessment_evaluation', [FeedbackController::class,'assessment_evaluation'])->name('assessment_evaluation');
 Route::post('assessment_evaluation', [FeedbackController::class,'assessment_evaluation_update']);
+
+Route::get('authenticity', [AuthenticityController::class,'index']);
+Route::post('authenticity', [AuthenticityController::class,'authenticity']);
+
 
 });

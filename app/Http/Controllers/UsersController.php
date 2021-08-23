@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 
+ * code by Rico Nyathi
+ * nexgen 
+ * Date 23/08/2021
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -27,6 +32,7 @@ class UsersController extends Controller{
     
     $credentials = $request->only('identinty', 'password');
         if (Auth::attempt($credentials)) {
+            
             return redirect()->intended('/')
                         ->withSuccess('Signed in');
         }

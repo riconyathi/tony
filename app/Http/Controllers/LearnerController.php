@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 
+ * code by Rico Nyathi
+ * nexgen 
+ * Date 23/08/2021
+ */
 namespace App\Http\Controllers;
 
 use App\Models\User;

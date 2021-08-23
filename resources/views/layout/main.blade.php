@@ -312,104 +312,123 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <form action="/authenticity" method="post">
+        @csrf
+        <div class="modal-body">
+          <input type="text" name="user_id" value="{{auth()->user()->id}}">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+            molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+            numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+            optio, eaque rerum! Provident similique accusantium nemo autem.</p>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-          molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-          numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-          optio, eaque rerum! Provident similique accusantium nemo autem.</p>
 
+          <p>I <input type="text" name="learner_name" value="{{auth()->user()->name}}"> ID/NO <input type="text"
+              name="identinty" value="{{auth()->user()->identinty}}">
 
-        <p>I <input type="text" name="" placeholder="learner name"> ID/NO <input type="text" name="">
+          </p>
+          <p>optio, eaque rerum! Provident similique accusantium nemo autem.</p>
 
-        </p>
-        <p>optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+          <p>Learner Signature <input type="text" name="learner_signature"></p>
+          <p>Learner Date <input type="date" name="learner_date"></p>
 
-        <p>Learner Signature <input type="text" name=""></p>
-
-        <hr>
-        <h5>Diclaration By Assessor</h5>
-        <div class="row">
-          <div class="col-md-6 list-group list-group-form">
-            <div class="list-group-item">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-12">Assessor Name</label>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control">
+          <hr>
+          <h5>Diclaration By Assessor</h5>
+          <div class="row">
+            <div class="col-md-6 list-group list-group-form">
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Assessor Name</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" name="assessor_name">
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="list-group-item">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-12">Assessor RegNo</label>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" placeholder="Your id ">
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Assessor RegNo</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Your id " name="assessor_registration_number">
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="list-group-item">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-12">Assessor Signature</label>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" placeholder="Your id ">
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Assessor Signature</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" name="assessor_signature">
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="list-group-item">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-12">Assessor Date</label>
-                <div class="col-sm-12">
-                  <input type="date" class="form-control" placeholder="Your id ">
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Assessor Date</label>
+                  <div class="col-sm-12">
+                    <input type="date" class="form-control" placeholder="Your id " name="assessor_date">
+                  </div>
                 </div>
+              </div>
+
+            </div>
+            <div class="col-md-6 list-group list-group-form">
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Modarator Name</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Your id " name="moderator_name">
+                  </div>
+                </div>
+              </div>
+
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Modarator Number</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Your id " name="moderator_registration_number">
+                  </div>
+                </div>
+              </div>
+
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Modarator Signature</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="Your id " name="moderator_signature">
+                  </div>
+                </div>
+              </div>
+
+              <div class="list-group-item">
+                <div class="form-group row align-items-center mb-0">
+                  <label class="form-label col-form-label col-sm-12">Modarator Date</label>
+                  <div class="col-sm-12">
+                    <input type="date" class="form-control" placeholder="Your id " name="moderator_date">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-md-6 list-group list-group-form">
+              <div class="list-group-item">
+
+                <div class="col-sm-12">
+                  <input type="submit" class="form-control" value="Save">
+                </div>
+
               </div>
             </div>
 
           </div>
-          <div class="col-md-6 list-group list-group-form">
-            <div class="list-group-item">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-12">Modarator Name</label>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" placeholder="Your id ">
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-6 list-group list-group-form">
-            <div class="list-group-item">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-12">Modarator Signature</label>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" placeholder="Your id ">
-                </div>
-              </div>
-            </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
 
-          </div>
-          <div class="col-md-6 list-group list-group-form">
-            <div class="list-group-item">
-              <div class="form-group row align-items-center mb-0">
-                <label class="form-label col-form-label col-sm-12">Modarator Date</label>
-                <div class="col-sm-12">
-                  <input type="date" class="form-control" placeholder="Your id ">
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-
-      </div>
     </div>
   </div>
+</div>
 </div>
 
 
@@ -824,7 +843,7 @@
                 <label class="form-label col-form-label col-sm-3">
                   Contact Person Surname</label>
                 <div class="col-sm-9">
-                  <input type="text" name="contact_person_surname" class="form-control" placeholder="Name ">
+                  <input type="text" name="contact_person_surname" class="form-control" placeholder="Surname ">
                 </div>
               </div>
             </div>
@@ -834,7 +853,7 @@
                   Identinty
                 </label>
                 <div class="col-sm-9">
-                  <input type="text" name="identinty" class="form-control" placeholder=" Assessor Name">
+                  <input type="text" name="identinty" class="form-control">
                 </div>
               </div>
             </div>

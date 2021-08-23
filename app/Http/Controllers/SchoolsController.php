@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * 
+ * code by Rico Nyathi
+ * nexgen 
+ * Date 23/08/2021
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,7 +16,9 @@ use Illuminate\Support\Facades\Hash;
 class SchoolsController extends Controller{
     
     public function index(){
-        $schools = School::all();
+        // get all schools with learner count and classes count
+
+        $schools = School::withCount('classes')->with('admin.user')->get();
         return view('schools',compact('schools'));   
     }
 
@@ -58,18 +65,18 @@ class SchoolsController extends Controller{
 
 
  
-        return redirect()->back()->withErrors($validator)->withInput();;
+        return redirect()->back();
 
     }
 
    
-    public function destroy($id){
+    public function destroy(Request $request){
         
-        $school = School::findOrFail($id);
-
+        $school = School::findOrFail($request->School_id);
+        if(auth()->user()->role == 'super-admin'){
         $school->delete();
-
-        return redirect('/schools');   
+        }
+        return redirect()->back();   
     }
     
 }

@@ -24,7 +24,7 @@ class CreateUnitStandardsTable extends Migration
             $table->string('formative');
             $table->string('summative');
             $table->string('learner_guide');
-            $table->string('other');
+            $table->string('other')->nullable();
             $table->timestamps();
         });
     }

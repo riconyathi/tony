@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * 
+ * code by Rico Nyathi
+ * nexgen 
+ * Date 23/08/2021
+ */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,7 +18,7 @@ use App\Models\User;
 
 class ClassesController extends Controller{
     public function index($slug){
-        $school =  School::with('admin.user')->with('classes.assessor')->with('classes.moderator')->where('slug',$slug)->first();
+        $school =  School::with('admin.user','classes.assessor','classes.moderator')->where('slug',$slug)->first();
         
         $users = User::where('role','assessor')->orWhere('role', 'moderator')->get();
 
@@ -22,13 +29,13 @@ class ClassesController extends Controller{
     }
 
     public function store(Request $request){
-
+        //validate input fields
         $fields = $request->validate([
             'name' => ['required', 'max:255'],
             'school_id' => ['required']
         ]);
         
-        
+       // create class
         $school = Classes::create([
             'name'=> $fields['name'],
             'slug'=> $fields['name'],
@@ -40,6 +47,7 @@ class ClassesController extends Controller{
     }
 
     public function destroy(){
+        //implement me please 
         return view('classes');
         
     }
@@ -80,6 +88,28 @@ public function add_moderator(Request $request){
  
 }
 
+public function remove_moderator(Request $request){
+      
+    Classes::where('id',$request->class_id)
+        ->update([ 
+            'moderator_id' => null    
+        ]);
+     
+     return redirect()->back();
+ 
+}
+
+public function remove_assessor(Request $request){
+      
+    Classes::where('id',$request->class_id)
+        ->update([ 
+            'assessor_id' => null   
+        ]);
+     
+     return redirect()->back();
+ 
+}
+
 
    public function view($slug){
         
@@ -92,10 +122,10 @@ public function add_moderator(Request $request){
 
 public function class_details($slug){
         
-    $class =  Classes::withCount('unit_standard')->with('Unit_standard','learner')->where('slug',$slug)->first();
+    $class =  Classes::withCount('unit_standard')->with('Unit_standard','learner','assessor','moderator')->where('slug',$slug)->first();
     $unit_standards = Unit_standard::all();
     $learners = Learner::where('school_id',$class->school_id)->get();
-    //dd($class);
+    
     return view('view_class',compact('class', 'unit_standards','learners'));
   
 }

@@ -13,18 +13,22 @@
                <li class="breadcrumb-item active">
                   View
                </li>
+               @if (auth()->user()->role == 'admin'|| auth()->user()->role == 'super-admin')
                <li class="breadcrumb-item active">
-                  <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal" data-target="#add_us">Add
+                  <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal"
+                     data-target="#add_us">Add
                      Us</button>
                </li>
                <li class="breadcrumb-item active">
                   <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal"
-               data-target="#add_student">Add Student</button>
+                     data-target="#add_student">Add Student</button>
                </li>
+               @endif
+
             </ol>
-            
+
             <br><br>
-            
+
             <br><br>
          </div>
 
@@ -51,62 +55,80 @@
                   <div class="custom-control custom-checkbox">
 
                      {{$class->name}}
-                     
+
                   </div>
                </li>
                <li>
-                 
-                     <div class="card" style="box-shadow: none">
-                        <div class="card-header">
-                           <h4 class="card-title">{{$class->name}}</h4>
-                           <div class="dropup float-right pull-right" style="margin-top: -1rem">
-                              <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
-                                 <i class="material-icons">more_horiz</i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                 <a class="dropdown-item" href="#">Action</a>
-                                 <a class="dropdown-item" href="#">Another action</a>
-                                 <a class="dropdown-item" href="#">Something else here</a>
-                              </div>
+                  @if (!empty($class->assessor))
+                  <div class="card" style="box-shadow: none">
+                     <div class="card-header">
+                        <h4 class="card-title">Assessor</h4>
+                        <h4 class="card-title">{{$class->assessor->name}} {{$class->assessor->surname}}</h4>
+                        @if (auth()->user()->role == 'admin'|| auth()->user()->role == 'super-admin')
+                        <div class="dropup float-right pull-right" style="margin-top: -1rem">
+                           <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
+                              <i class="material-icons">more_horiz</i>
+                           </a>
+                           <div class="dropdown-menu dropdown-menu-right">
+                              <form onclick="return confirm('Are you sure you want to remove the Assessor?')"
+                                 action="/class/remove_assessor" method="post">
+                                 @csrf
+                                 <input type="hidden" name="class_id" value="{{$class->id}}">
+                                 <input type="hidden" name="assessor_id" value="{{$class->assessor->id}}">
+                                 <button class="dropdown-item"><i class="fas fa-trash"></i></button>
+                              </form>
+
                            </div>
                         </div>
-                        <div class="card-body">
-                          
-                           <p class="card-subtitle mb-3">Titles can go in body as well</p>
-
-                           <p class="text-70">With supporting text below as a natural lead-in to additional content.</p>
-                           <a href="#" class="btn btn-outline-secondary">Get started</a>
-                        </div>
-        
+                        @endif
                      </div>
+                     <div class="card-body">
+
+                        <p class="card-subtitle mb-3">{{$class->assessor->identinty}}</p>
+
+                        <p class="text-70">{{$class->assessor->email}}</p>
+
+                     </div>
+
+                  </div>
+                  @endif
 
                </li>
                <li>
-             
-                     <div class="card" style="box-shadow: none">
-                        <div class="card-header">
-                           <h4 class="card-title">{{$class->name}}</h4>
-                           <div class="dropup float-right pull-right" style="margin-top: -1rem">
-                              <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
-                                 <i class="material-icons">more_horiz</i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                 <a class="dropdown-item" href="#">Action</a>
-                                 <a class="dropdown-item" href="#">Another action</a>
-                                 <a class="dropdown-item" href="#">Something else here</a>
-                              </div>
+
+                  @if (!empty($class->moderator))
+                  <div class="card" style="box-shadow: none">
+                     <div class="card-header">
+                        <h4 class="card-title">Moderator</h4>
+                        <h4 class="card-title">{{$class->moderator->name}} {{$class->moderator->surname}}</h4>
+                        @if (auth()->user()->role == 'admin'|| auth()->user()->role == 'super-admin')
+                        <div class="dropup float-right pull-right" style="margin-top: -1rem">
+                           <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
+                              <i class="material-icons">more_horiz</i>
+                           </a>
+                           <div class="dropdown-menu dropdown-menu-right">
+                              <form onclick="return confirm('Are you sure you want to remove the Moderator?')"
+                                 action="/class/remove_moderator" method="post">
+                                 @csrf
+                                 <input type="hidden" name="class_id" value="{{$class->id}}">
+                                 <input type="hidden" name="moderator_id" value="{{$class->moderator->id}}">
+                                 <button class="dropdown-item"><i class="fas fa-trash"></i></button>
+                              </form>
+
                            </div>
                         </div>
-                        <div class="card-body">
-                          
-                           <p class="card-subtitle mb-3">Titles can go in body as well</p>
+                        @endif
+                     </div>
+                     <div class="card-body">
 
-                           <p class="text-70">With supporting text below as a natural lead-in to additional content.</p>
-                           <a href="#" class="btn btn-outline-secondary">Get started</a>
-                        </div>
-                       
+                        <p class="card-subtitle mb-3">{{$class->moderator->identinty}}</p>
+
+                        <p class="text-70">{{$class->moderator->email}}</p>
+
                      </div>
 
+                  </div>
+                  @endif
 
                </li>
 
@@ -119,57 +141,59 @@
    <div class="col-lg-6 card-group-row__col">
       <div class="card card-group-row__card">
          <div class="card-header d-flex align-items-center">
-            <strong class="flex">Checklist</strong>
+            <strong class="flex">Unit Standards</strong>
 
          </div>
          <div class="progress rounded-0" style="height: 4px;">
             <div class="progress-bar bg-primary" role="progressbar" style="width: 100%;" aria-valuenow="100"
                aria-valuemin="100" aria-valuemax="100"></div>
          </div>
-      
-
-               <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-employee-name" data-lists-values="[&quot;js-lists-values-employee-name&quot;, &quot;js-lists-values-employer-name&quot;, &quot;js-lists-values-projects&quot;, &quot;js-lists-values-activity&quot;, &quot;js-lists-values-earnings&quot;]">
-
-                   <div class="card-header">
-                       <form class="form-inline">
-                           <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
-                           <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy" placeholder="Search ...">
-
-                       </form>
-                   </div>
-
-                   <table class="table mb-0 thead-border-top-0 table-nowrap">
-                       <thead>
-                        <tr>
 
 
+         <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-employee-name"
+            data-lists-values="[&quot;js-lists-values-employee-name&quot;, &quot;js-lists-values-employer-name&quot;, &quot;js-lists-values-projects&quot;, &quot;js-lists-values-activity&quot;, &quot;js-lists-values-earnings&quot;]">
 
-                           <th style="width: 150px;">
-                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Us ID</a>
-                           </th>
-      
-                           <th>
-                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">US Title</a>
-                           </th>
-      
-                           <th style="width: 48px;">
-                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">US Credits</a>
-                           </th>
-      
-                           <th style="width: 48px;">
-                              <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">US Level</a>
-                           </th>
-      
-                           <th style="width: 48px;">
-                              <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">View</a>
-                           </th>
-      
-      
-                        </tr>
-                       </thead>
-                       <tbody class="list" id="staff">
-                          
-                        @foreach ($class->unit_standard as $unit_standard)
+            <div class="card-header">
+               <form class="form-inline">
+                  <label class="mr-sm-2 form-label" for="inlineFormFilterBy">Filter by:</label>
+                  <input type="text" class="form-control search mb-2 mr-sm-2 mb-sm-0" id="inlineFormFilterBy"
+                     placeholder="Search ...">
+
+               </form>
+            </div>
+
+            <table class="table mb-0 thead-border-top-0 table-nowrap">
+               <thead>
+                  <tr>
+
+
+
+                     <th style="width: 150px;">
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Us ID</a>
+                     </th>
+
+                     <th>
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">US Title</a>
+                     </th>
+
+                     <th style="width: 48px;">
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">US Credits</a>
+                     </th>
+
+                     <th style="width: 48px;">
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">US Level</a>
+                     </th>
+
+                     <th style="width: 48px;">
+                        <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">View</a>
+                     </th>
+
+
+                  </tr>
+               </thead>
+               <tbody class="list" id="staff">
+
+                  @foreach ($class->unit_standard as $unit_standard)
 
                   <tr>
                      <td>
@@ -209,20 +233,20 @@
 
                      <td>
                         <div class="d-flex flex-column">
-                           <small class="js-lists-values-email text-50">{{$unit_standard->us_level}}</small>
+                           <small class="js-lists-values-email text-50">{{$unit_standard->us_credit}}</small>
                         </div>
                      </td>
 
                      <td>
                         <div class="d-flex flex-column">
-                           <small class="js-lists-values-budget"><strong>$1,200</strong></small>
-                           <small class="text-50">Invoice Sent</small>
+                           <small class="js-lists-values-budget"><strong>{{$unit_standard->us_level}}</strong></small>
+
                         </div>
                      </td>
 
                      <td>
                         <div class="d-flex flex-column">
-                           <a href="{{route('unit_standard/details',$unit_standard->us_name)}}"><i
+                           <a href="{{route('unit_standard/view_details',$unit_standard->us_name)}}"><i
                                  class="fas fa-eye"></i></a>
 
 
@@ -232,21 +256,21 @@
                   </tr>
 
                   @endforeach
-                        </tbody>
-                   </table>
-               </div>
+               </tbody>
+            </table>
+         </div>
 
-        
-       
 
-           </div>
-           
-         
+
+
+      </div>
+
+
    </div>
 
    <div class="col-lg-12 card-group-row__col">
 
-      
+
       <div class="card card-group-row__card">
          <div class="card-header d-flex align-items-center">
             <strong class="flex">Students</strong>
@@ -257,112 +281,103 @@
                aria-valuemin="0" aria-valuemax="100"></div>
          </div>
          <div class="card-body">
-                          <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-employee-name" data-lists-values="[&quot;js-lists-values-employee-name&quot;, &quot;js-lists-values-employer-name&quot;, &quot;js-lists-values-projects&quot;, &quot;js-lists-values-activity&quot;, &quot;js-lists-values-earnings&quot;]">
-                           <div class="card-header">
-                               <div class="search-form">
-                                   <input type="text" class="form-control search" placeholder="Search ...">
-                                   <button class="btn" type="button" role="button"><i class="material-icons">search</i></button>
-                               </div>
+            <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-employee-name"
+               data-lists-values="[&quot;js-lists-values-employee-name&quot;, &quot;js-lists-values-employer-name&quot;, &quot;js-lists-values-projects&quot;, &quot;js-lists-values-activity&quot;, &quot;js-lists-values-earnings&quot;]">
+               <div class="card-header">
+                  <div class="search-form">
+                     <input type="text" class="form-control search" placeholder="Search ...">
+                     <button class="btn" type="button" role="button"><i class="material-icons">search</i></button>
+                  </div>
+               </div>
+               <table class="table mb-0 thead-border-top-0 table-nowrap">
+                  <thead>
+                     <tr>
+
+
+
+                        <th style="width: 150px;">
+                           <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Name</a>
+                        </th>
+
+                        <th>
+                           <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">ID/Passport</a>
+                        </th>
+
+
+                        <th style="width: 48px;">
+                           <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">Phone</a>
+                        </th>
+
+                        <th style="width: 48px;">
+                           <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">View</a>
+                        </th>
+
+
+                     </tr>
+                  </thead>
+                  <tbody class="list" id="search">
+                     @foreach ($class->learner as $learner)
+
+                     <tr>
+                        <td>
+
+                           <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
+                              <div class="avatar avatar-sm mr-8pt">
+
+                              </div>
+                              <div class="media-body">
+                                 <div class="d-flex flex-column">
+                                    <small class="js-lists-values-project"><strong>{{$learner->name}}</strong></small>
+                                    <small class="js-lists-values-location text-50">{{$learner->surname}}</small>
+                                 </div>
+                              </div>
                            </div>
-                           <table class="table mb-0 thead-border-top-0 table-nowrap">
-                               <thead>
-                                 <tr>
+
+                        </td>
+
+                        <td>
+
+                           <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
+
+                              <div class="media-body">
+
+                                 <div class="d-flex align-items-center">
+                                    <div class="flex d-flex flex-column">
+                                       <p class="mb-0"><strong
+                                             class="js-lists-values-lead">{{$learner->identinty}}</strong></p>
+                                       <small class="js-lists-values-email text-50">{{$learner->email}}</small>
+                                    </div>
+                                 </div>
+
+                              </div>
+                           </div>
+
+                        </td>
+
+
+                        <td>
+                           <div class="d-flex flex-column">
+
+                              <small class="text-50">{{$learner->phone}}</small>
+                           </div>
+                        </td>
+
+                        <td>
+                           <div class="d-flex flex-column">
+                              <a href=""><i class="fas fa-eye"></i></a>
+                           </div>
+                        </td>
+
+                     </tr>
+
+                     @endforeach
+                  </tbody>
+               </table>
+            </div>
 
 
 
-                                    <th style="width: 150px;">
-                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-project">Project</a>
-                                    </th>
-               
-                                    <th>
-                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-lead">Lead / Team</a>
-                                    </th>
-               
-                                    <th style="width: 48px;">
-                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">Status</a>
-                                    </th>
-               
-                                    <th style="width: 48px;">
-                                       <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-budget">Budget</a>
-                                    </th>
-               
-                                    <th style="width: 48px;">
-                                       <a href="javascript:void(0)" class="sort desc" data-sort="js-lists-values-date">Due</a>
-                                    </th>
-               
-               
-                                 </tr>
-                               </thead>
-                               <tbody class="list" id="search">
-                                 @foreach ($class->learner as $learner)
 
-                                 <tr>
-                                    <td>
-               
-                                       <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
-                                          <div class="avatar avatar-sm mr-8pt">
-               
-                                          </div>
-                                          <div class="media-body">
-                                             <div class="d-flex flex-column">
-                                                <small class="js-lists-values-project"><strong>{{$learner->name}}</strong></small>
-                                                <small class="js-lists-values-location text-50">{{$learner->surname}}</small>
-                                             </div>
-                                          </div>
-                                       </div>
-               
-                                    </td>
-               
-                                    <td>
-               
-                                       <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
-               
-                                          <div class="media-body">
-               
-                                             <div class="d-flex align-items-center">
-                                                <div class="flex d-flex flex-column">
-                                                   <p class="mb-0"><strong
-                                                         class="js-lists-values-lead">{{$learner->identinty}}</strong></p>
-                                                   <small class="js-lists-values-email text-50">{{$learner->email}}</small>
-                                                </div>
-                                             </div>
-               
-                                          </div>
-                                       </div>
-               
-                                    </td>
-               
-                                    <td>
-                                       <div class="d-flex flex-column">
-                                          <small class="js-lists-values-status text-50 mb-4pt">QA</small>
-                                          <span class="indicator-line rounded bg-warning"></span>
-                                       </div>
-                                    </td>
-               
-                                    <td>
-                                       <div class="d-flex flex-column">
-                                          <small class="js-lists-values-budget"><strong>$1,200</strong></small>
-                                          <small class="text-50">Invoice Sent</small>
-                                       </div>
-                                    </td>
-               
-                                    <td>
-                                       <div class="d-flex flex-column">
-                                          <small class="js-lists-values-date"><strong>19/02/2019</strong></small>
-                                          <small class="text-50">18 days</small>
-                                       </div>
-                                    </td>
-               
-                                 </tr>
-               
-                                 @endforeach                                                                                
-                                 </tbody>
-                           </table>
-                       </div>
-
-                   
-
-           
 
          </div>
 

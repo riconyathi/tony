@@ -1,14 +1,46 @@
 <?php
+/**
+ * 
+ * code by Rico Nyathi
+ * nexgen 
+ * Date 23/08/2021
+ */
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
+use App\Models\User;
+use App\Models\Learner;
+use App\Models\Classes;
 
 class IndexController extends Controller{
    public function index(){
      
     if(Auth::check()){
+
+        if(auth()->user()->role== 'admin'){
+
+            $admin =  Admin::with('school.classes')->where('user_id',auth()->user()->id)->first();
+            $school = $admin->school;
+            
+            $users = User::where('role','assessor')->orWhere('role', 'moderator')->get();
+    
+            $learners = Learner::with('user')->where('school_id',$school->id)->get();
+
+            return view('school_details',compact('school','users','learners'));
+        }
+
+        if(auth()->user()->role== 'assessor'||auth()->user()->role== 'moderator' ||auth()->user()->role== 'mentor'){
+
+            $classes = Classes::where('assessor_id', auth()->user()->id)
+                                ->orWhere('moderator_id', auth()->user()->id)
+                                ->get();
+
+            return view('class_view',compact('classes'));
+        }
+
         return view('index');
     }
 
