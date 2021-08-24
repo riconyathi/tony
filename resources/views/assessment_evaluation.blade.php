@@ -18,16 +18,7 @@
         </li>
     </ol>
 </div>
-<div class="col-md-1 col-12">
-    <div class="flex" style="max-width: 100%">
 
-        <nav aria-label="Page navigation example">
-            {{ $us->links() }}
-        </nav>
-
-    </div>
-</div>
-@foreach ($us as $i)
 <div class="container page__container page-section">
     <div class="page-separator">
         <div class="page-separator__text">Learner Assessment Evaluation</div>
@@ -36,7 +27,16 @@
     <div class="dashboard-area-tabs p-relative o-hidden">
 
         <div class="row m-2">
-            <div class="col-md-1 col-12"></div>
+            <div class="col-md-1 col-12">
+                <div class="flex" style="max-width: 100%">
+
+                    <nav aria-label="Page navigation example">
+                        {{ $us->links() }}
+                    </nav>
+
+                </div>
+            </div>
+            @foreach ($us as $i)
             <div class="col-md-12 col-12">
                 <div class="border rounded d-flex align-items-center p-16pt border-left-primary">
                     <div class="card-body text-70">
@@ -48,19 +48,20 @@
                                 <div class="list-group-item" style="border: none !important;">
                                     <div class="form-group row align-items-center mb-0">
                                         <label class="form-label col-form-label col-sm-3">
-                                            Learner ID</label>
+                                            Learner Name
+                                        </label>
                                         <div class="col-sm-9">
-                                            <input name="user_id" type="text" class="form-control" value="1">
+                                            <input type="text" class="form-control" value="{{auth()->user()->name}}{{auth()->user()->surname}}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="list-group-item" style="border: none !important;">
                                     <div class="form-group row align-items-center mb-0">
                                         <label class="form-label col-form-label col-sm-3">
-                                            Learner Name
+                                            Learner ID
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" placeholder="Name">
+                                            <input type="text" class="form-control" value="{{auth()->user()->identinty}}">
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +92,7 @@
                                         <label class="form-label col-form-label col-sm-3">
                                             Unit Standard Level</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" placeholder="Level">
+                                            <input type="text" class="form-control" value="{{$i->us_level}}">
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +101,7 @@
                                         <label class="form-label col-form-label col-sm-3">
                                             Unit Standard Credit</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" placeholder="Credit">
+                                            <input type="text" class="form-control" value="{{$i->us_credit}}">
                                         </div>
                                     </div>
                                 </div>
@@ -403,7 +404,7 @@
                 </div>
 
             </div>
-
+            @endforeach
 
         </div>
 
@@ -414,7 +415,7 @@
     </div>
 
 </div>
-@endforeach
+
 
 </div>
 

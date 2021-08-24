@@ -17,9 +17,7 @@
 <div class="page-separator">
    <div class="page-separator__text"> </div>
 </div>
-@if($errors->any())
-{!! implode('', $errors->all('<div>:message</div>')) !!}
-@endif
+
 <div class="mb-lg-32pt">
 
    <div class="row">

@@ -61,17 +61,8 @@ Route::get('view_class', [ViewClassController::class,'view_class'])->name('view_
 Route::get('students', [StudentsController::class,'students'])->name('students');
 Route::get('password', [PasswordController::class,'password'])->name('password');
 
-//users
-Route::get('users', [UsersController::class,'users'])->name('users');
-Route::post('user/create', [UsersController::class,'create']);
 
-Route::middleware(['admin'])->group(function () {
-// //school 
-Route::get('schools', [SchoolsController::class,'index'])->name('schools');
-Route::post('school/create', [SchoolsController::class,'store']);
-Route::delete('school', [SchoolsController::class,'destroy']);
- 
-});
+
 
 // //classes
 Route::get('school/{slug}/view', [ClassesController::class,'index'])->name('school/view');
@@ -88,7 +79,7 @@ Route::post('class/remove_moderator', [ClassesController::class,'remove_moderato
 
 // //unit_standards
 Route::get('unit_standard', [Unit_standardController::class,'index'])->name('unit_standard');
-Route::post('unit_standard/create', [Unit_standardController::class,'store']);
+
 Route::get('unit_standard/view', [Unit_standardController::class,'index'])->name('unit_standard/view');
 Route::get('unit_standard/{slug}/view_details', [Unit_standardController::class,'view_details'])->name('unit_standard/view_details');
 Route::get('class/{slug}/us', [Unit_standardController::class,'class_us'])->name('class/us');
@@ -124,5 +115,19 @@ Route::post('assessment_evaluation', [FeedbackController::class,'assessment_eval
 Route::get('authenticity', [AuthenticityController::class,'index']);
 Route::post('authenticity', [AuthenticityController::class,'authenticity']);
 
+Route::middleware(['admin'])->group(function () {
+    // //school 
+    Route::get('schools', [SchoolsController::class,'index'])->name('schools');
+    Route::post('school/create', [SchoolsController::class,'store']);
+    Route::delete('school', [SchoolsController::class,'destroy']);
+    Route::post('unit_standard/edit', [Unit_standardController::class,'edit']);
+    Route::post('unit_standard/create', [Unit_standardController::class,'store']);
 
+    
+    //users
+    Route::get('users', [UsersController::class,'users'])->name('users');
+    Route::post('user/create', [UsersController::class,'create']);
+    Route::post('user/delete', [UsersController::class,'create']);
+     
+    });
 });

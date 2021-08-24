@@ -104,9 +104,11 @@
                                                 <div class="flex">
                                                     <strong>COPIES OF UNIT STANDARD</strong>
                                                 </div>
-                                                <div class="text-50"><a href=""
-                                                        class="btn btn-sm btn-outline-secondary"><i
-                                                            class="fa fa-eye"></i></a></div>
+                                                <div class="text-50"><a
+                                                        href="{{asset('storage/us_docs/'.$unit_standard->us_copies)}}"
+                                                        class=" btn-outline-secondary" target="_blank"><i
+                                                            class="fa fa-eye"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +133,11 @@
                                                 <div class="flex">
                                                     <strong>COPIES OF ALIGNMENT METRICS </strong>
                                                 </div>
-                                                <div class="text-50"><a href=""
-                                                        class="btn btn-sm btn-outline-secondary"><i
-                                                            class="fa fa-eye"></i></a></div>
+                                                <div class="text-50"><a
+                                                        href="{{asset('storage/us_docs/'.$unit_standard->us_alignment)}}"
+                                                        class=" btn-outline-secondary" target="_blank"><i
+                                                            class="fa fa-eye"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -159,9 +163,11 @@
                                                 <div class="flex">
                                                     <strong>LEANER GUIDE</strong>
                                                 </div>
-                                                <div class="text-50"><a href=""
-                                                        class="btn btn-sm btn-outline-secondary"><i
-                                                            class="fa fa-eye"></i></a></div>
+                                                <div class="text-50"><a
+                                                        href="{{asset('storage/us_docs/'.$unit_standard->learner_guide)}}"
+                                                        class=" btn-outline-secondary" target="_blank"><i
+                                                            class="fa fa-eye"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -186,9 +192,11 @@
                                                 <div class="flex">
                                                     <strong>FORMATIVE</strong>
                                                 </div>
-                                                <div class="text-50"><a href=""
-                                                        class="btn btn-sm btn-outline-success"><i
-                                                            class="fa fa-download"></i></a></div>
+                                                <div class="text-50"><a
+                                                        href="{{asset('storage/us_docs/'.$unit_standard->formative)}}"
+                                                        class=" btn-outline-secondary" target="_blank"><i
+                                                            class="fa fa-eye"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -213,13 +221,18 @@
                                                 <div class="flex">
                                                     <strong>SUMMATIVE</strong>
                                                 </div>
-                                                <div class="text-50"><a href=""
-                                                        class="btn btn-sm btn-outline-success"><i
-                                                            class="fa fa-download"></i></a></a></div>
+                                                <div class="text-50"><a
+                                                        href="{{asset('storage/us_docs/'.$unit_standard->summative)}}"
+                                                        class=" btn-outline-secondary" target="_blank"><i
+                                                            class="fa fa-eye"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @if ($unit_standard->other)
+
+
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card">
                                         <div class="card-body">
@@ -240,13 +253,16 @@
                                                 <div class="flex">
                                                     <strong>OTHER</strong>
                                                 </div>
-                                                <div class="text-50"><a href=""
-                                                        class="btn btn-sm btn-outline-success"><i
-                                                            class="fa fa-download"></i></a></a></div>
+                                                <div class="text-50"><a
+                                                        href="{{asset('storage/us_docs/'.$unit_standard->other)}}"
+                                                        class=" btn-outline-secondary" target="_blank"><i
+                                                            class="fa fa-eye"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
 
@@ -279,6 +295,7 @@
             </div>
             <form method="post" action="/unit_standard/edit" enctype="multipart/form-data">
                 @csrf
+                <input name="id" type="hidden" class="form-control" value="{{$unit_standard->id}}">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 list-group list-group-form">

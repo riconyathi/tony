@@ -203,8 +203,30 @@
           </div>
         </div>
       </div>
+      @if($errors->any())
+      
+        <div class="flex" style="max-width: 100%">
+          <div class="alert alert-soft-warning alert-dismissible fade show mb-0" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div class="d-flex flex-wrap align-items-start">
+              <div class="mr-8pt">
+                <i class="material-icons">access_time</i>
+              </div>
+              <div class="flex" style="min-width: 180px">
+                <small class="text-black-100">
 
+                  {!! implode('', $errors->all('<div>:message</div>')) !!}
 
+                </small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+     
+      @endif
       @yield('content')
 
 
@@ -1053,6 +1075,95 @@
               <button class="btn btn-outline-secondary">Create</button>
             </div>
           </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>
+
+{{-- add booklog --}}
+
+<div class="modal fade" id="logbook" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document"
+    style="box-shadow: 0 3px 3px -2px rgb(39 44 51 / 10%), 0 3px 4px 0 rgb(39 44 51 / 4%), 0 1px 8px 0 rgb(39 44 51 / 2%);">
+    <div class="modal-content">
+      <form action="/learner/{{auth()->user()->id}}/tertiary_details" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Create Class </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
+
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Institution</label>
+                <div class="col-sm-9">
+                  <input name="institution" type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Course
+                </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="course">
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Duration</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="duration">
+                </div>
+              </div>
+            </div>
+
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Modules</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="modules">
+                </div>
+              </div>
+            </div>
+
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Year Obtained</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="year_obtained">
+                </div>
+              </div>
+            </div>
+
+            <div class="list-group-item" style="border: none !important;">
+              <div class="form-group row align-items-center mb-0">
+                <label class="form-label col-form-label col-sm-3">
+                  Year Obtained</label>
+                <div class="col-sm-9">
+                  <input type="file" class="form-control" name="document">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary">Create</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

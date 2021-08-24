@@ -18,6 +18,7 @@
     </div>
 </div>
 
+@if (!empty($datas->school))
 
 <div class="container page__container page__container page-section">
     @foreach ($datas->school->classes as $class)
@@ -61,4 +62,5 @@
     @endforeach
 
 </div>
+@endif
 @endsection

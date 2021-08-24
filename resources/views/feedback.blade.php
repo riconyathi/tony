@@ -50,19 +50,21 @@
                             <div class="list-group-item" style="border: none !important;">
                                 <div class="form-group row align-items-center mb-0">
                                     <label class="form-label col-form-label col-sm-3">
-                                        Learner ID</label>
+                                        Learner Name
+                                    </label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control"
+                                            value="{{auth()->user()->name}} {{auth()->user()->surname}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="list-group-item" style="border: none !important;">
                                 <div class="form-group row align-items-center mb-0">
                                     <label class="form-label col-form-label col-sm-3">
-                                        Learner Name
+                                        Identity Number
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" value="{{auth()->user()->identinty}}">
                                     </div>
                                 </div>
                             </div>
