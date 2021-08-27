@@ -17,6 +17,8 @@ use Hash;
 
 class LearnerController extends Controller
 {
+
+
     public function index(){
         
         $learners = User::get();
@@ -53,34 +55,39 @@ class LearnerController extends Controller
     }
     
     public function section_one(){
-        $user = User::with('learners')->where('id',auth()->user()->id)->first();
-        
+        $id = $this->getLearnerID();
+        $user = User::with('learners')->where('id',$id)->first();
+       
         return view('section_one',compact('user'));
     }
     
     
     public function tertiary_details(){
-        $datas = Tertiary::where('user_id',auth()->user()->id)->get();
+        $id = $this->getLearnerID();
+        $datas = Tertiary::where('user_id',$id)->get();
         
         return view('tertiary_details',compact('datas'));
         
     }
 
     public function employment(){
-        $datas = Employment::where('user_id',auth()->user()->id)->get();
+        $id = $this->getLearnerID();
+        $datas = Employment::where('user_id',$id)->get();
         return view('employment',compact('datas'));
        
     }
     
     public function school_details(){
-        $user = Learner::where('user_id',auth()->user()->id)->first();
+        $id = $this->getLearnerID();
+        $user = Learner::where('user_id',$id)->first();
+       
         return view('learner_school_details',compact('user'));
         
     }
     
     public function update(Request $request,$user_id) {
         
-        //dd($request);
+        
         
         //validate fields
         $fields = $request->validate([
@@ -212,5 +219,18 @@ class LearnerController extends Controller
 
 
         
+    }
+
+    public function getLearnerID(){
+        $id;
+        //get student ID
+        if(auth()->user()->role == 'learner'){
+            $id = auth()->user()->id;
+        }else{
+            $learner = session()->get('learner');
+            $id =  $learner->id;
+        }
+
+        return $id;
     }
 }

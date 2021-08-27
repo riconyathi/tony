@@ -44,14 +44,22 @@
                 <div class="posts-card__title flex d-flex flex-column">
                     <h5 class="card-title m-0"><a href="#" class="headings-color">
                             {{$unit_standard->us_name}}</a></h5>
-                    <small class="text-50">12/12/2007</small>
+                    
                 </div>
+                @if (auth()->user()->role == 'learner')
+                <div class="dropdown ml-auto">
+                    <a href="{{ route('unit_standard/learner_details',$unit_standard->us_name) }}"
+                        class="text-muted btn btn-outline-secondary btn-rounded btn-sm"> view</a>
 
+                </div>  
+                @else
                 <div class="dropdown ml-auto">
                     <a href="{{ route('unit_standard/details',$unit_standard->us_name) }}"
                         class="text-muted btn btn-outline-secondary btn-rounded btn-sm"> view</a>
 
-                </div>
+                </div>  
+                @endif
+                
             </div>
         </div>
 

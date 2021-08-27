@@ -24,12 +24,21 @@
     <div class="page-separator">
         <div class="page-separator__text">Assesor Review Ethics Form</div>
     </div>
+    <div class="col-md-1 col-12">
+        <div class="flex" style="max-width: 100%">
+
+            <nav aria-label="Page navigation example">
+                {{ $listUS->links() }}
+            </nav>
+
+        </div>
+    </div>
 
     <div class="dashboard-area-tabs p-relative o-hidden">
         <form action="/review" method="post">
             @csrf
             <div class="row">
-
+                @foreach ($listUS as $us)
                 <div class="col-md-12 col-12">
                     <div class="border rounded d-flex align-items-center p-16pt border-left-primary">
                         <div class="card-body text-70" style="min-width: 100%;">
@@ -38,16 +47,17 @@
                             <div class="list-group list-group-form"
                                 style="box-shadow: none;border: none !important; min-width: 100%;">
 
-                                
-                                            <input name="user_id" type="hidden" class="form-control" value="1">
-                                      
+                                @if (auth()->user()->role == 'learner')
+
+
                                 <div class="list-group-item" style="border: none !important;">
                                     <div class="form-group row align-items-center mb-0">
                                         <label class="form-label col-form-label col-sm-3">
                                             Learner Name
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{auth()->user()->name}}{{auth()->user()->surname}}">
+                                            <input type="text" class="form-control"
+                                                value="{{auth()->user()->name}}{{auth()->user()->surname}}">
                                         </div>
                                     </div>
                                 </div>
@@ -57,18 +67,47 @@
                                             Learner ID
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{auth()->user()->identinty}}">
+                                            <input type="text" class="form-control"
+                                                value="{{auth()->user()->identinty}}">
                                         </div>
                                     </div>
                                 </div>
+                                @else
+
 
                                 <div class="list-group-item" style="border: none !important;">
                                     <div class="form-group row align-items-center mb-0">
                                         <label class="form-label col-form-label col-sm-3">
-                                            Assessor Registration No
+                                            Learner Name
                                         </label>
                                         <div class="col-sm-9">
-                                            <input name="us_id" type="text" class="form-control" value="1">
+                                            <input type="text" class="form-control"
+                                                value="{{session()->get('learner')->name}}{{session()->get('learner')->surname}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" style="border: none !important;">
+                                    <div class="form-group row align-items-center mb-0">
+                                        <label class="form-label col-form-label col-sm-3">
+                                            Learner ID
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control"
+                                                value="{{session()->get('learner')->identinty}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @endif
+
+                                <div class="list-group-item" style="border: none !important;">
+                                    <div class="form-group row align-items-center mb-0">
+                                        <label class="form-label col-form-label col-sm-3">
+                                            Unit Standard
+                                        </label>
+                                        <input name="us_id" type="hidden" class="form-control" value="{{$us->id}}">
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="{{$us->us_name}}">
                                         </div>
                                     </div>
                                 </div>
@@ -292,7 +331,7 @@
                                                             Assessor Signature
                                                         </label>
                                                         <input name="assessor_signature" type="text"
-                                                            class="form-control" placeholder="signature">
+                                                            class="form-control" placeholder="signature" required>
                                                     </div>
 
 
@@ -301,7 +340,7 @@
                                                             Assessor Date
                                                         </label>
                                                         <input name="assessor_date" type="date" class="form-control"
-                                                            placeholder="signature">
+                                                            placeholder="signature" required>
                                                     </div>
 
                                                 </div>
@@ -334,6 +373,8 @@
 
 
                 </div>
+                @endforeach
+
 
 
 

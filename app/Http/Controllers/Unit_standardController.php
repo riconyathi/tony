@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Models\Unit_standard;
 use App\Models\Classes;
 use App\Models\Learner;
+use App\Models\User;
+use App\Models\Evidence;
 use Illuminate\Support\Facades\Storage;
 
 class Unit_standardController extends Controller{
@@ -32,10 +34,31 @@ class Unit_standardController extends Controller{
     }
 
     public function details($name){
+      
       //get unit standard details with user evidence that belong to user
-      $unit_standard =  Unit_standard::with('evidence')->where('us_name',$name)->first();
+      
+      $us =  Unit_standard::where('us_name',$name)->first();
+      
+      $unit_standard = Evidence::with('unit_standard')
+                  ->where('us_id',$us->id)
+                  ->where('user_id',$this->getLearnerID())
+                  ->first();
        
       return view('view_unit_standard',compact('unit_standard'));
+    }
+
+    public function learner_details($name){
+      
+      //get unit standard details with user evidence that belong to user
+      
+      $us =  Unit_standard::where('us_name',$name)->first();
+      
+      $unit_standard = Evidence::with('unit_standard')
+                  ->where('us_id',$us->id)
+                  ->where('user_id',$this->getLearnerID())
+                  ->first();
+       
+      return view('view_unit_standard_learner',compact('unit_standard','us'));
     }
 
     public function store(Request $request){
@@ -223,7 +246,7 @@ class Unit_standardController extends Controller{
 
       public function section_2(){
         //get laerner data using user id
-        $datas = Learner::with('school.classes.unit_standard')->where('user_id',auth()->user()->id)->first();
+        $datas = Learner::with('school.classes.unit_standard')->where('user_id',$this->getLearnerID())->first();
         return view('section_2',compact('datas'));   
     }
 
@@ -232,6 +255,19 @@ class Unit_standardController extends Controller{
       $file = "us_docs/".$path; 
       Storage::delete($file);
     }
+
+    public function getLearnerID(){
+      $id;
+      //get student ID
+      if(auth()->user()->role == 'learner'){
+          $id = auth()->user()->id;
+      }else{
+          $learner = session()->get('learner');
+          $id =  $learner->id;
+      }
+
+      return $id;
+  }
 
     }
 

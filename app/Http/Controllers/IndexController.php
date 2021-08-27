@@ -46,4 +46,11 @@ class IndexController extends Controller{
 
     return redirect("login")->withSuccess('You are not allowed to access');
    }
+
+   public function assesment(Request $request,$id){
+        $user = User::where('identinty',$id)->first();
+        session()->put('learner', $user);
+      
+    return view('assesment');
+   }
 }

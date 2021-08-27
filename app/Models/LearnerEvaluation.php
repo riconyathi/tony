@@ -18,7 +18,7 @@ class LearnerEvaluation extends Model
 
      public function unit_standard(){
 
-        return $this->belongsTo(Unit_standard::class);
+        return $this->belongsTo(Unit_standard::class,'us_id');
      
 }
 }

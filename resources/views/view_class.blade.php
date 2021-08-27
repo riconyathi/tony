@@ -364,7 +364,8 @@
 
                         <td>
                            <div class="d-flex flex-column">
-                              <a href=""><i class="fas fa-eye"></i></a>
+                              <a href="{{route('assesment/learner',$learner->identinty)}}"><i
+                                    class="fas fa-eye"></i></a>
                            </div>
                         </td>
 

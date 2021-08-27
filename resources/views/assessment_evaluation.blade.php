@@ -43,7 +43,9 @@
 
                         <form action="/assessment_evaluation" method="post">
                             @csrf
+                            <input name="us_id" type="hidden" class="form-control" value="{{$i->id}}">
                             <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
+                                @if (auth()->user()->role == 'learner')
 
                                 <div class="list-group-item" style="border: none !important;">
                                     <div class="form-group row align-items-center mb-0">
@@ -51,7 +53,8 @@
                                             Learner Name
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{auth()->user()->name}}{{auth()->user()->surname}}">
+                                            <input type="text" class="form-control"
+                                                value="{{auth()->user()->name}}{{auth()->user()->surname}}">
                                         </div>
                                     </div>
                                 </div>
@@ -61,10 +64,37 @@
                                             Learner ID
                                         </label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{auth()->user()->identinty}}">
+                                            <input type="text" class="form-control"
+                                                value="{{auth()->user()->identinty}}">
                                         </div>
                                     </div>
                                 </div>
+                                @else
+                                <div class="list-group-item" style="border: none !important;">
+                                    <div class="form-group row align-items-center mb-0">
+                                        <label class="form-label col-form-label col-sm-3">
+                                            Learner Name
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control"
+                                                value="{{session()->get('learner')->name}}{{session()->get('learner')->surname}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" style="border: none !important;">
+                                    <div class="form-group row align-items-center mb-0">
+                                        <label class="form-label col-form-label col-sm-3">
+                                            Learner ID
+                                        </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control"
+                                                value="{{session()->get('learner')->identinty}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @endif
+
                                 <div class="list-group-item" style="border: none !important;">
                                     <div class="form-group row align-items-center mb-0">
                                         <label class="form-label col-form-label col-sm-3">
@@ -81,8 +111,7 @@
                                         <label class="form-label col-form-label col-sm-3">
                                             Unit Standard Id</label>
                                         <div class="col-sm-9">
-                                            <input name="us_id" type="text" class="form-control"
-                                                value="{{$i->us_name}}">
+                                            <input type="text" class="form-control" value="{{$i->us_name}}">
                                         </div>
                                     </div>
                                 </div>

@@ -23,5 +23,9 @@ class Unit_standard extends Model
  public function evidence(){
     return $this->hasMany(Evidence::class, 'us_id');
 }
+
+public function feedback(){
+    return $this->hasMany(Feedback::class, 'us_id');
+}
     
 }

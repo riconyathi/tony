@@ -41,10 +41,10 @@ class CreateLearnerEvaluationsTable extends Migration
             $table->string('q11_comment')->nullable();
             $table->string('learner_signature');
             $table->date('learner_date');
-            $table->string('assessor_signature');
-            $table->date('assessor_date');
-            $table->string('moderator_signature');
-            $table->date('moderator_date');
+            $table->string('assessor_signature')->nullable();
+            $table->date('assessor_date')->nullable();
+            $table->string('moderator_signature')->nullable();
+            $table->date('moderator_date')->nullable();
             $table->timestamps();
         });
     }

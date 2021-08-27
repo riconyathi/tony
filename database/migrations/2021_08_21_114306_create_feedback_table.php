@@ -21,10 +21,10 @@ class CreateFeedbackTable extends Migration
             $table->enum('knowledge_questionare',['Competent','Not Yet Competent']);
             $table->enum('practical_questionare',['Competent','Not Yet Competent']);
             $table->enum('overall',['Competent','Not Yet Competent']);
-            $table->string('comments');
-            $table->string('action_plan');
-            $table->string('learner_signature');
-            $table->date('learner_date');
+            $table->string('comments')->nullable();
+            $table->string('action_plan')->nullable();
+            $table->string('learner_signature')->nullable();
+            $table->date('learner_date')->nullable();
             $table->string('assessor_signature');
             $table->date('assessor_date');
             $table->timestamps();

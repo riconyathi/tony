@@ -22,7 +22,6 @@ use App\Http\Controllers\Section_4Controller;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\Section_5Controller;
 use App\Http\Controllers\ObservationController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\ViewClassController;
@@ -33,6 +32,7 @@ use App\Http\Controllers\SchoolsController;
 use App\Http\Controllers\LearnerController;
 use App\Http\Controllers\EvidenceController;
 use App\Http\Controllers\AuthenticityController;
+use App\Http\Controllers\LogbookController;
 
 Route::get('login', [UsersController::class,'login'])->name('login');
 Route::post('auth', [UsersController::class,'authenticate']);
@@ -51,11 +51,6 @@ Route::get('/', [IndexController::class,'index'])->name('index');
 Route::get('section_3', [Section_3Controller::class,'section_3'])->name('section_3');
 Route::get('assessment_evidence', [Assessment_evidenceController::class,'assessment_evidence'])->name('assessment_evidence');
 Route::get('section_4', [Section_4Controller::class,'section_4'])->name('section_4');
-
-
-
-Route::get('section_5', [Section_5Controller::class,'section_5'])->name('section_5');
-Route::get('observation', [ObservationController::class,'observation'])->name('observation');
 
 Route::get('view_class', [ViewClassController::class,'view_class'])->name('view_class');
 Route::get('students', [StudentsController::class,'students'])->name('students');
@@ -84,7 +79,7 @@ Route::get('unit_standard/view', [Unit_standardController::class,'index'])->name
 Route::get('unit_standard/{slug}/view_details', [Unit_standardController::class,'view_details'])->name('unit_standard/view_details');
 Route::get('class/{slug}/us', [Unit_standardController::class,'class_us'])->name('class/us');
 Route::get('unit_standard/{name}/details', [Unit_standardController::class,'details'])->name('unit_standard/details');
-
+Route::get('unit_standard/{name}/learner_details', [Unit_standardController::class,'learner_details'])->name('unit_standard/learner_details');
 // learners
 Route::post('school/{slug}/add_learner', [LearnerController::class,'store']);
 Route::post('learner/{slug}/add_to_class', [LearnerController::class,'add_to_class']);
@@ -115,6 +110,12 @@ Route::post('assessment_evaluation', [FeedbackController::class,'assessment_eval
 Route::get('authenticity', [AuthenticityController::class,'index']);
 Route::post('authenticity', [AuthenticityController::class,'authenticity']);
 
+Route::get('section_5', [LogbookController::class,'index'])->name('section_5');
+Route::post('section_5', [LogbookController::class,'store']);
+
+Route::get('observation', [ObservationController::class,'observation'])->name('observation');
+Route::post('observation', [ObservationController::class,'store']);
+
 Route::middleware(['admin'])->group(function () {
     // //school 
     Route::get('schools', [SchoolsController::class,'index'])->name('schools');
@@ -130,4 +131,8 @@ Route::middleware(['admin'])->group(function () {
     Route::post('user/delete', [UsersController::class,'create']);
      
     });
+
+    //assessment
+Route::get('assesment/{id}/learner', [IndexController::class,'assesment'])->name('assesment/learner');
+
 });
