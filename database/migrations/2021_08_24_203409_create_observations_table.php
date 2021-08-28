@@ -21,7 +21,7 @@ class CreateObservationsTable extends Migration
             $table->string('evidence_observed');
             $table->string('action_required');
             $table->string('requirents_met');
-            $table->string('learner_comments');
+            $table->string('learner_comments')->nullable();
             $table->string('assessor_feedback');
             $table->string('learner_signature')->nullable();
             $table->date('learner_date')->nullable();

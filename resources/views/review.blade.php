@@ -347,6 +347,7 @@
                                             </div>
 
                                         </div>
+                                        @if (auth()->user()->role == 'assessor')
                                         <div class="col-lg-12" style="border: none !important;">
                                             <div class="form-group row align-items-center mb-0">
                                                 <div class="col-md-3"></div>
@@ -356,6 +357,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+                                        
                                     </div>
 
 

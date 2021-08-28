@@ -19,26 +19,9 @@ class EvidenceController extends Controller
         $file;
         $formative;
         $summative;
-        $other;
+        $other = null;
 
 
-          //validate incoming 
-        //   $fields = $request->validate([
-        //     'us_name' => ['unique:unit_standards','required','min:3', 'max:255'],
-        //     'us_title' => ['required','min:3', 'max:255'],
-        //     'us_level' => ['required' ,'min:3', 'max:255'],
-        //     'us_credit' => ['required','min:3', 'max:255'],
-        //     'us_copies' => ['required','min:3', 'max:255'],
-        //     'us_alignment' => ['required','min:3', 'max:255'],
-        //     'learner_guide' => ['required','min:3', 'max:255'],
-        //     'formative' => ['required','min:3', 'max:255'],
-        //     'summative' => ['required','min:3', 'max:255'],
-        //     'other' => ['min:3','max:255']
-        // ]);
-
-       
-
-        
         if($request->file('formative')){
         $file = $request->file('formative');
         $formative = time().'_'.$request->file('formative')->getClientOriginalName();

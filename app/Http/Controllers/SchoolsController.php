@@ -12,6 +12,8 @@ use App\Models\School;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\EmailUser;
+use Illuminate\Support\Facades\Mail;
 
 class SchoolsController extends Controller{
     
@@ -47,7 +49,7 @@ class SchoolsController extends Controller{
         ]);
 
         //Create admin
-        //insert in users table
+        
         $user = User::create([
             'identinty'=> $fields['identinty'],
             'name'=> $fields['contact_person'],
@@ -63,7 +65,7 @@ class SchoolsController extends Controller{
             'school_id'=> $school->id 
         ]);
 
-
+        Mail::to('riconyathi@gmail.com')->send(new EmailUser());
  
         return redirect()->back();
 

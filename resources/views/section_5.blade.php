@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('content')
+
 <style type="text/css">
     .file {
         padding-bottom: 2rem !important;
@@ -17,8 +18,10 @@
             5
         </li>
     </ol>
+    @if (auth()->user()->role != 'learner' )
     <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal" data-target="#logbook">Add</button>
     <br><br>
+    @endif
 </div>
 
 
@@ -64,10 +67,7 @@
                             <table class="table mb-0 thead-border-top-0 table-nowrap">
                                 <thead>
                                     <tr>
-                                         <th>
-                                            <a href="javascript:void(0)" class="sort"
-                                                data-sort="js-lists-values-name">NOF ID</a>
-                                        </th>
+
 
                                         <th style="width: 150px;">
                                             <a href="javascript:void(0)" class="sort"
@@ -90,40 +90,45 @@
                                         </th>
 
 
-                                        <th style="width: 24px;"> total Minites</th>
+                                        <th style="width: 24px;"> total Minutes</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list" id="employees">
-                                    
+                                    @foreach ($logbook as $log)
+                                    @php
+                                    $startTime = Carbon\Carbon::parse($log->date_done.''.$log->start_time);
+                                    $endTime = Carbon\Carbon::parse($log->date_done.''.$log->end_time);
+                                    $totalDuration = $endTime->diffForHumans($startTime);
+                                    @endphp
                                     <tr>
-                                        <td>527217217
 
-                                        </td>
-                                        lorem ipsum
+
                                         <td>
-                                            lorem ipsum
+                                            {{$log->activity}}
                                         </td>
 
                                         <td>
-                                            lorem ipsum
+                                            {{$log->date_done}}
                                         </td>
 
                                         <td>
-                                            <small class="js-lists-values-type text-50">Temporary</small>
+                                            <small class="js-lists-values-type text-50">{{$log->start_time}}</small>
                                         </td>
 
                                         <td>
-                                            <small class="js-lists-values-phone text-50">239-721-3649</small>
+                                            <small class="js-lists-values-phone text-50">{{$log->end_time}}</small>
                                         </td>
 
                                         <td>
-                                            <small class="js-lists-values-date text-50">19/02/2019</small>
+                                            <small class="js-lists-values-date text-50">{{$totalDuration}}</small>
                                         </td>
 
                                         <td class="pr-0">
 
                                         </td>
                                     </tr>
+                                    @endforeach
+
 
 
                                 </tbody>
@@ -178,15 +183,9 @@
                 <div class="modal-body">
                     <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
 
-                        <div class="list-group-item" style="border: none !important;">
-                            <div class="form-group row align-items-center mb-0">
-                                <label class="form-label col-form-label col-sm-3">
-                                    Institution</label>
-                                <div class="col-sm-9">
-                                    <input name="user_id" type="text" class="form-control" value="1">
-                                </div>
-                            </div>
-                        </div>
+
+                        <input name="user_id" type="hidden" class="form-control" value="1">
+
                         <div class="list-group-item" style="border: none !important;">
                             <div class="form-group row align-items-center mb-0">
                                 <label class="form-label col-form-label col-sm-3">
@@ -220,7 +219,7 @@
                         <div class="list-group-item" style="border: none !important;">
                             <div class="form-group row align-items-center mb-0">
                                 <label class="form-label col-form-label col-sm-3">
-                                  End Time  </label>
+                                    End Time </label>
                                 <div class="col-sm-9">
                                     <input type="time" class="form-control" name="end_time">
                                 </div>

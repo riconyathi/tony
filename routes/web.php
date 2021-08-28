@@ -38,13 +38,16 @@ Route::get('login', [UsersController::class,'login'])->name('login');
 Route::post('auth', [UsersController::class,'authenticate']);
 Route::get('logout', [UsersController::class,'logout'])->name('logout');
 
+Route::get('/', [IndexController::class,'index'])->name('index');
+Route::get('about', [IndexController::class,'about'])->name('about');
+Route::get('contact', [IndexController::class,'contact'])->name('contact');
 
-Route::get('about', [AboutController::class,'about'])->name('about');
-Route::get('myAccount', [AccountController::class,'account'])->name('account');
+Route::get('service', [IndexController::class,'service'])->name('service');
+Route::get('project', [IndexController::class,'project'])->name('project');
 
 Route::middleware(['auth'])->group(function () {
 
-Route::get('/', [IndexController::class,'index'])->name('index');
+Route::get('/home', [IndexController::class,'home'])->name('home');
 
 
 

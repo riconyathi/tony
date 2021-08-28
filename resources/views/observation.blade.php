@@ -17,9 +17,12 @@
             Tools
         </li>
     </ol>
+    @if (auth()->user()->role == 'learner' || auth()->user()->role == 'assessor' )
+
     <button class="btn float-right btn-outline-secondary mb-2" data-toggle="modal"
         data-target="#observation">Add</button>
     <br><br>
+    @endif
 </div>
 
 
@@ -61,13 +64,14 @@
 
 
                         <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
-
+                            @if (auth()->user()->role != 'learner')
                             <div class="list-group-item" style="border: none !important;">
                                 <div class="form-group row align-items-center mb-0">
                                     <label class="form-label col-form-label col-sm-3">
                                         Learner ID</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" placeholder="ID ">
+                                        <input type="text" class="form-control"
+                                            value="{{session()->get('learner')->identinty}}">
                                     </div>
                                 </div>
                             </div>
@@ -77,11 +81,35 @@
                                         Learner Name
                                     </label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                        <input type="text" class="form-control"
+                                            value="{{session()->get('learner')->name}}{{session()->get('learner')->surname}}">
+                                    </div>
+                                </div>
+                            </div>
+                            @else
+                            <div class="list-group-item" style="border: none !important;">
+                                <div class="form-group row align-items-center mb-0">
+                                    <label class="form-label col-form-label col-sm-3">
+                                        Learner ID</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" value="{{auth()->user()->identinty}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="list-group-item" style="border: none !important;">
+                                <div class="form-group row align-items-center mb-0">
+                                    <label class="form-label col-form-label col-sm-3">
+                                        Learner Name
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control"
+                                            value="{{auth()->user()->name}}{{auth()->user()->surname}}">
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            {{-- <div class="list-group-item" style="border: none !important;">
                                 <div class="form-group row align-items-center mb-0">
                                     <label class="form-label col-form-label col-sm-3">
                                         Unit Standard Title</label>
@@ -119,7 +147,7 @@
                                         <input type="text" class="form-control" placeholder="Credit">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <hr>
 
                         </div>
@@ -177,31 +205,26 @@
                 </thead>
                 <tbody class="list" id="employees">
                     <tr>
-                        <td>527217217
-
-                        </td>
-                        lorem ipsum
                         <td>
-                            lorem ipsum
+                            {{$observation->assessment_criteria}}
                         </td>
 
                         <td>
-                            lorem ipsum
+                            {{$observation->model_evidence}}
                         </td>
 
                         <td>
-                            <small class="js-lists-values-type text-50">Temporary</small>
+                            {{$observation->evidence_observed}}
                         </td>
 
                         <td>
-                            <small class="js-lists-values-phone text-50">239-721-3649</small>
+                            <small class="js-lists-values-type text-50">{{$observation->action_required}}</small>
                         </td>
 
-
-
-                        <td class="pr-0">
-
+                        <td>
+                            <small class="js-lists-values-phone text-50">{{$observation->requirents_met}}</small>
                         </td>
+
                     </tr>
 
 
@@ -224,39 +247,43 @@
                                 <label class="form-label col-form-label">
                                     Comments From Learner
                                 </label>
-                                <textarea type="text" class="form-control" placeholder="signature"></textarea>
+                                <textarea type="text" class="form-control">
+                                    {{$observation->learner_comments}}
+                                </textarea>
                             </div>
-                            <div class="col-sm-5">
-                                <label class="form-label col-form-label">
-                                    Assessor's Feedback Remarks
-                                </label>
-                                <textarea type="date" class="form-control" placeholder="Credit"></textarea>
-                            </div>
+
 
                             <div class="col-sm-5">
                                 <label class="form-label col-form-label">
                                     Learner Signature
                                 </label>
-                                <input type="text" class="form-control" placeholder="signature">
+                                <input type="text" class="form-control" value="{{$observation->learner_signature}}">
                             </div>
                             <div class="col-sm-5">
                                 <label class="form-label col-form-label">
                                     Learner Date
                                 </label>
-                                <input type="date" class="form-control" placeholder="Credit">
+                                <input type="date" class="form-control" value="{{$observation->learner_date}}">
                             </div>
-
+                            <div class="col-sm-5">
+                                <label class="form-label col-form-label">
+                                    Assessor's Feedback Remarks
+                                </label>
+                                <textarea type="date" class="form-control">
+                                    {{$observation->assessor_feedback}}
+                                </textarea>
+                            </div>
                             <div class="col-sm-5">
                                 <label class="form-label col-form-label">
                                     Assessor Signature
                                 </label>
-                                <input type="text" class="form-control" placeholder="signature">
+                                <input type="text" class="form-control" value="{{$observation->assessor_signature}}">
                             </div>
                             <div class="col-sm-5">
                                 <label class="form-label col-form-label">
                                     Assessor Date
                                 </label>
-                                <input type="date" class="form-control" placeholder="Credit">
+                                <input type="date" class="form-control" value="{{$observation->assessor_date}}">
                             </div>
 
 
@@ -288,8 +315,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <input name="user_id" type="hidden" class="form-control" value="{{auth()->user()->id}}">
+
                 <div class="modal-body">
+                    @if (auth()->user()->role == 'assessor')
+
                     <div class="list-group list-group-form" style="box-shadow: none;border: none !important; ">
 
                         <div class="list-group-item" style="border: none !important;">
@@ -340,17 +369,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="list-group-item" style="border: none !important;">
-                            <div class="form-group row align-items-center mb-0">
-                                <label class="form-label col-form-label col-sm-3">
-                                    learner comments</label>
-                                <div class="col-sm-9">
-                                    <textarea class="form-control" name="learner_comments">
-                                    </textarea>
-                                </div>
-                            </div>
-                        </div>
                         <div class="list-group-item" style="border: none !important;">
                             <div class="form-group row align-items-center mb-0">
                                 <label class="form-label col-form-label col-sm-3">
@@ -358,26 +376,6 @@
                                 <div class="col-sm-9">
                                     <textarea class="form-control" name="assessor_feedback">
                                     </textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="list-group-item" style="border: none !important;">
-                            <div class="form-group row align-items-center mb-0">
-                                <label class="form-label col-form-label col-sm-3">
-                                    learner signature</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="learner_signature">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="list-group-item" style="border: none !important;">
-                            <div class="form-group row align-items-center mb-0">
-                                <label class="form-label col-form-label col-sm-3">
-                                    learner date</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control" name="learner_date">
                                 </div>
                             </div>
                         </div>
@@ -399,6 +397,42 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+                        @if (auth()->user()->role == 'learner')
+                        <div class="list-group-item" style="border: none !important;">
+                            <div class="form-group row align-items-center mb-0">
+                                <label class="form-label col-form-label col-sm-3">
+                                    learner comments</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="learner_comments">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="list-group-item" style="border: none !important;">
+                            <div class="form-group row align-items-center mb-0">
+                                <label class="form-label col-form-label col-sm-3">
+                                    learner signature</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="learner_signature">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item" style="border: none !important;">
+                            <div class="form-group row align-items-center mb-0">
+                                <label class="form-label col-form-label col-sm-3">
+                                    learner date</label>
+                                <div class="col-sm-9">
+                                    <input type="date" class="form-control" name="learner_date">
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+
 
                     </div>
                     <div class="modal-footer">

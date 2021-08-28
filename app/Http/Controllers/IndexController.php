@@ -16,7 +16,22 @@ use App\Models\Learner;
 use App\Models\Classes;
 
 class IndexController extends Controller{
-   public function index(){
+    public function index(){
+        return view('front.index');
+    }
+    public function service(){
+        return view('front.services');
+    }
+    public function project(){
+        return view('front.projects');
+    }
+    public function contact(){
+        return view('front.contact');
+    }
+    public function about(){
+        return view('front.about');
+    }
+   public function home(){
      
     if(Auth::check()){
 

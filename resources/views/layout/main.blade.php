@@ -103,7 +103,7 @@
               <div class="navbar-collapse__content pb-16pt pb-sm-0">
                 <ul class="nav navbar-nav">
                   <li class="nav-item">
-                    <a href="/" class="nav-link">
+                    <a href="/home" class="nav-link">
                       <i class="material-icons icon--left">assessment</i>
                       Dashboards
                     </a>

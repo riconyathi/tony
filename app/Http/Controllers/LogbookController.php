@@ -7,7 +7,8 @@ use App\Models\Logbook;
 class LogbookController extends Controller
 {
     public function index(){
-        return view('section_5');
+        $logbook = Logbook::where('user_id',$this->getLearnerID())->get();
+        return view('section_5',compact('logbook'));
     }
 
     public function store(Request $request){
@@ -25,5 +26,19 @@ class LogbookController extends Controller
         Logbook::updateOrCreate($fields); 
 
         return redirect()->back();
+    }
+
+    public function getLearnerID(){
+        $id;
+        //get student ID
+        if(auth()->user()->role == 'learner'){
+            $id = auth()->user()->id;
+        }else{
+
+            $learner = session()->get('learner');
+            $id =  $learner->id;
+        }
+
+        return $id;
     }
 }

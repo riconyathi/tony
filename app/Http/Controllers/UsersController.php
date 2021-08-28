@@ -35,7 +35,7 @@ class UsersController extends Controller{
     $credentials = $request->only('identinty', 'password');
         if (Auth::attempt($credentials)) {
             
-            return redirect()->intended('/')
+            return redirect()->intended('/home')
                         ->withSuccess('Signed in');
         }
   
